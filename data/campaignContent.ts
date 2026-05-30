@@ -597,3 +597,530 @@ export function getLocalizedDiscoveryCards(locale: LocaleKey): DiscoveryCard[] {
     return { ...c, ...localized };
   });
 }
+
+export interface DiscoveryDetailSection {
+  title: string;
+  paragraphs: string[];
+}
+
+export interface DiscoveryDetail {
+  sections: DiscoveryDetailSection[];
+}
+
+const DISCOVERY_DETAILS: Record<LocaleKey, Record<DiscoveryCard['id'], DiscoveryDetail>> = {
+  en: {
+    'card-1': {
+      sections: [
+        {
+          title: 'Why it stands out',
+          paragraphs: [
+            'Sapa’s terraced rice fields are a living landscape—hand-shaped over generations and constantly changing with the season.',
+            'This is a premium “slow travel” moment: quiet vistas, crisp air, and a sense of scale that reads beautifully on video.',
+          ],
+        },
+        {
+          title: 'When to go',
+          paragraphs: [
+            'For golden fields, plan for late summer to early autumn. For lush green layers, visit in spring to early summer.',
+            'Bring a light jacket—mountain evenings can cool quickly.',
+          ],
+        },
+        {
+          title: 'Shot list',
+          paragraphs: [
+            'Wide ridge panoramas, close-up textures of rice and water, and a silhouette walk at sunset.',
+            'Add a local market cutaway to make the story feel grounded and human.',
+          ],
+        },
+      ],
+    },
+    'card-2': {
+      sections: [
+        {
+          title: 'What to taste',
+          paragraphs: [
+            'Bánh mì is Vietnam’s street-food signature: crusty bread, bright pickles, fresh herbs, and savory fillings.',
+            'Try a classic combo and one regional variation to create a “tasting journey” narrative.',
+          ],
+        },
+        {
+          title: 'How to order',
+          paragraphs: [
+            'Keep it simple: choose a filling, add chili if you like heat, and ask for extra herbs for aroma.',
+            'Pair with iced coffee for a fast, iconic travel rhythm.',
+          ],
+        },
+        {
+          title: 'Where to find the best',
+          paragraphs: [
+            'Go early for the crispest bread and the fullest selection. Busy stalls are often the freshest.',
+            'Ask locals for their favorite corner shop—every neighborhood has a “best bánh mì” debate.',
+          ],
+        },
+      ],
+    },
+    'card-3': {
+      sections: [
+        {
+          title: 'Cultural meaning',
+          paragraphs: [
+            'Áo dài is elegance in motion—an outfit that blends tradition with contemporary style.',
+            'It photographs well because it carries both silhouette and story.',
+          ],
+        },
+        {
+          title: 'Where to experience it',
+          paragraphs: [
+            'Look for tailoring streets, cultural museums, or graduation season for authentic, everyday moments.',
+            'Ask permission before filming close portraits in public spaces.',
+          ],
+        },
+        {
+          title: 'Styling note',
+          paragraphs: [
+            'Use clean backgrounds and gentle movement to highlight fabric and form.',
+            'Vertical typography can make this feel editorial for East Asian audiences.',
+          ],
+        },
+      ],
+    },
+    'card-4': {
+      sections: [
+        {
+          title: 'Night energy',
+          paragraphs: [
+            'Da Nang balances beach calm with modern city lights—bridges, riverside walks, and late-night street snacks.',
+            'It’s perfect for campaigns that want a “modern Vietnam” hook without losing warmth.',
+          ],
+        },
+        {
+          title: 'What to do',
+          paragraphs: [
+            'Walk the Han River promenade, catch the city glow after rain, and frame the bridges as leading lines.',
+            'Add a quick cut to cafés or rooftop views for a premium feel.',
+          ],
+        },
+        {
+          title: 'Practical tip',
+          paragraphs: [
+            'Keep shots stable and exposure controlled—night scenes look best with fewer, cleaner highlights.',
+            'Use ride-hailing for smooth point-to-point movement.',
+          ],
+        },
+      ],
+    },
+  },
+  vi: {
+    'card-1': {
+      sections: [
+        {
+          title: 'Vì sao đặc biệt',
+          paragraphs: [
+            'Ruộng bậc thang Sa Pa là “cảnh quan sống” được tạo dựng qua nhiều thế hệ và thay đổi theo mùa.',
+            'Đây là khoảnh khắc du lịch chậm cao cấp: tầm nhìn rộng, không khí mát và nhịp phim rất “điện ảnh”.',
+          ],
+        },
+        {
+          title: 'Thời điểm lý tưởng',
+          paragraphs: [
+            'Muốn vàng óng, hãy đi cuối hè đến đầu thu. Muốn xanh mướt, hãy đi mùa xuân đến đầu hè.',
+            'Nhớ mang áo khoác mỏng vì buổi tối vùng núi có thể lạnh nhanh.',
+          ],
+        },
+        {
+          title: 'Gợi ý khung hình',
+          paragraphs: [
+            'Toàn cảnh sống núi, cận cảnh chất liệu lúa/nước, và bóng người đi bộ lúc hoàng hôn.',
+            'Thêm một nhịp chợ địa phương để câu chuyện gần gũi và “có người”.',
+          ],
+        },
+      ],
+    },
+    'card-2': {
+      sections: [
+        {
+          title: 'Nên thử gì',
+          paragraphs: [
+            'Bánh mì là biểu tượng street food: vỏ giòn, đồ chua, rau thơm và nhân mặn.',
+            'Hãy thử một phiên bản “kinh điển” và một biến tấu vùng miền để kể hành trình vị giác.',
+          ],
+        },
+        {
+          title: 'Cách gọi nhanh',
+          paragraphs: [
+            'Chọn nhân, thêm ớt nếu thích cay, xin thêm rau để thơm hơn.',
+            'Kết hợp với cà phê đá để tạo nhịp du lịch nhanh, đúng chất Việt.',
+          ],
+        },
+        {
+          title: 'Ăn ở đâu ngon',
+          paragraphs: [
+            'Đi sớm để bánh giòn nhất và quầy có nhiều lựa chọn. Quán đông thường là quán “tươi” nhất.',
+            'Hỏi người địa phương quán ruột—mỗi khu phố thường có một “cuộc tranh luận bánh mì ngon nhất”.',
+          ],
+        },
+      ],
+    },
+    'card-3': {
+      sections: [
+        {
+          title: 'Ý nghĩa văn hoá',
+          paragraphs: [
+            'Áo dài là vẻ đẹp chuyển động—kết hợp truyền thống và phong cách hiện đại.',
+            'Lên hình rất tốt vì vừa có dáng, vừa có câu chuyện.',
+          ],
+        },
+        {
+          title: 'Trải nghiệm ở đâu',
+          paragraphs: [
+            'Tìm ở các phố may đo, bảo tàng văn hoá, hoặc mùa lễ tốt nghiệp để bắt gặp khoảnh khắc đời thường.',
+            'Hãy xin phép trước khi quay cận chân dung nơi công cộng.',
+          ],
+        },
+        {
+          title: 'Lưu ý tạo hình',
+          paragraphs: [
+            'Chọn nền sạch và chuyển động nhẹ để tôn vải và form.',
+            'Typography dọc có thể tạo cảm giác biên tập cho khán giả Đông Á.',
+          ],
+        },
+      ],
+    },
+    'card-4': {
+      sections: [
+        {
+          title: 'Nhịp đêm hiện đại',
+          paragraphs: [
+            'Đà Nẵng cân bằng biển êm với ánh sáng đô thị: cầu, bờ sông và đồ ăn khuya.',
+            'Rất hợp chiến dịch muốn “Việt Nam hiện đại” nhưng vẫn ấm áp.',
+          ],
+        },
+        {
+          title: 'Làm gì',
+          paragraphs: [
+            'Dạo bờ sông Hàn, bắt ánh phố sau mưa, lấy cầu làm đường dẫn khung hình.',
+            'Thêm nhịp cà phê hoặc rooftop để tăng cảm giác cao cấp.',
+          ],
+        },
+        {
+          title: 'Mẹo thực tế',
+          paragraphs: [
+            'Giữ khung ổn định và kiểm soát phơi sáng—cảnh đêm đẹp nhất khi highlight sạch.',
+            'Ưu tiên gọi xe để di chuyển mượt giữa các điểm.',
+          ],
+        },
+      ],
+    },
+  },
+  ja: {
+    'card-1': {
+      sections: [
+        {
+          title: '魅力のポイント',
+          paragraphs: [
+            'サパの棚田は“生きた風景”。世代を超えて形づくられ、季節ごとに表情が変わります。',
+            '静けさとスケール感があり、映像でも上質なスロートラベルとして伝わります。',
+          ],
+        },
+        {
+          title: 'ベストシーズン',
+          paragraphs: [
+            '黄金色を狙うなら夏の終わり〜初秋。緑の層なら春〜初夏がきれいです。',
+            '山の夜は冷えやすいので薄手の上着があると安心です。',
+          ],
+        },
+        {
+          title: '撮影アイデア',
+          paragraphs: [
+            '稜線のワイド、稲と水の質感の寄り、夕暮れのシルエット。',
+            'ローカル市場の一瞬を差し込むと、人の温度が出ます。',
+          ],
+        },
+      ],
+    },
+    'card-2': {
+      sections: [
+        {
+          title: '味わいどころ',
+          paragraphs: [
+            'バインミーはベトナムの代表的ストリートフード。香草、なます、具材のバランスが魅力です。',
+            '定番と地域アレンジを食べ比べると、物語性のある“食の旅”になります。',
+          ],
+        },
+        {
+          title: '頼み方のコツ',
+          paragraphs: [
+            '具材を選び、辛さが欲しければチリ、香りはハーブ多めで。',
+            'アイスコーヒーと合わせると、テンポの良い旅のリズムが作れます。',
+          ],
+        },
+        {
+          title: 'おすすめの探し方',
+          paragraphs: [
+            'いちばんは早めの時間帯。パンがより香ばしく、具材の回転も良いことが多いです。',
+            '地元の人に“推しの店”を聞くのが近道。エリアごとに名店が違います。',
+          ],
+        },
+      ],
+    },
+    'card-3': {
+      sections: [
+        {
+          title: '文化的な意味',
+          paragraphs: [
+            'アオザイは“動く優雅さ”。伝統と現代性が同居する装いです。',
+            'シルエットと背景が両方映えるため、写真・映像向きです。',
+          ],
+        },
+        {
+          title: '体験できる場所',
+          paragraphs: [
+            '仕立て通り、文化施設、卒業シーズンなどで自然な日常の瞬間に出会えます。',
+            '近距離の人物撮影はひと言断ると安心です。',
+          ],
+        },
+        {
+          title: 'スタイリング',
+          paragraphs: [
+            '背景はシンプルに、動きはやさしく。布の流れが主役になります。',
+            '縦書きタイポグラフィは東アジア向けに編集感を出せます。',
+          ],
+        },
+      ],
+    },
+    'card-4': {
+      sections: [
+        {
+          title: '夜の魅力',
+          paragraphs: [
+            'ダナンはビーチの穏やかさと、都市の光が共存。橋と川沿いの散歩が絵になります。',
+            '“現代ベトナム”の入口として、温かみを残しながら都会感を出せます。',
+          ],
+        },
+        {
+          title: 'おすすめ体験',
+          paragraphs: [
+            'ハン川のプロムナード、雨上がりの反射、橋をリーディングラインに。',
+            'カフェやルーフトップのカットを加えるとプレミアム感が出ます。',
+          ],
+        },
+        {
+          title: '実用メモ',
+          paragraphs: [
+            '夜景はブレと白飛びを抑えると美しく仕上がります。',
+            '移動は配車アプリでスムーズに。',
+          ],
+        },
+      ],
+    },
+  },
+  zh: {
+    'card-1': {
+      sections: [
+        {
+          title: '亮点',
+          paragraphs: [
+            '沙坝梯田是一处“会呼吸的景观”，由世代耕作塑形，随季节不断变化。',
+            '它非常适合“慢旅行”叙事：安静、开阔、镜头语言高级。',
+          ],
+        },
+        {
+          title: '什么时候去',
+          paragraphs: [
+            '想看金黄稻浪，选夏末到初秋；想看层层翠绿，选春季到初夏。',
+            '山里夜晚降温快，带一件薄外套更舒适。',
+          ],
+        },
+        {
+          title: '镜头清单',
+          paragraphs: [
+            '山脊大景、稻田与水面的纹理特写、日落剪影行走。',
+            '穿插当地集市一秒，让故事更有人味。',
+          ],
+        },
+      ],
+    },
+    'card-2': {
+      sections: [
+        {
+          title: '怎么吃',
+          paragraphs: [
+            '法棍三明治是越南街头招牌：酥脆面包、酸爽腌菜、清香香草与咸香馅料。',
+            '一份经典口味 + 一份地区变化，最容易讲出“味觉旅程”。',
+          ],
+        },
+        {
+          title: '点单小技巧',
+          paragraphs: [
+            '选馅料，想要辣就加辣椒，想要更香就加香草。',
+            '配一杯冰咖啡，形成快速、标志性的旅行节奏。',
+          ],
+        },
+        {
+          title: '去哪家更地道',
+          paragraphs: [
+            '早点去通常更好吃：面包更酥脆，食材更新鲜，选择也更全。',
+            '问问本地人常去的街角小店——每个街区都有“最好吃”的争论。',
+          ],
+        },
+      ],
+    },
+    'card-3': {
+      sections: [
+        {
+          title: '文化之美',
+          paragraphs: [
+            '奥黛是“流动的优雅”，把传统与现代穿在同一条线条里。',
+            '它同时拥有轮廓与故事，因此极其上镜。',
+          ],
+        },
+        {
+          title: '去哪里感受',
+          paragraphs: [
+            '可从裁缝街、文化场馆、毕业季等场景捕捉真实的日常瞬间。',
+            '在公共空间拍近景人像前，建议先礼貌征求同意。',
+          ],
+        },
+        {
+          title: '拍摄提示',
+          paragraphs: [
+            '背景越干净越好，动作越轻越好，让布料与线条成为主角。',
+            '纵排排版也能让整体更有杂志感。',
+          ],
+        },
+      ],
+    },
+    'card-4': {
+      sections: [
+        {
+          title: '夜色氛围',
+          paragraphs: [
+            '岘港把海边的松弛和城市的灯光融合在一起：桥梁、河岸散步、深夜小吃。',
+            '适合强调“现代越南”的活动主张，同时保留温度。',
+          ],
+        },
+        {
+          title: '推荐玩法',
+          paragraphs: [
+            '走汉江步道，抓雨后反光，用桥做画面引导线。',
+            '加一段咖啡馆或屋顶视角，气质会更高级。',
+          ],
+        },
+        {
+          title: '实用建议',
+          paragraphs: [
+            '夜景尽量稳、控曝光，减少杂乱高光会更干净好看。',
+            '出行用打车软件更省心。',
+          ],
+        },
+      ],
+    },
+  },
+  ko: {
+    'card-1': {
+      sections: [
+        {
+          title: '포인트',
+          paragraphs: [
+            '사파의 계단식 논은 세대에 걸쳐 만들어진 “살아있는 풍경”으로, 계절마다 표정이 달라집니다.',
+            '조용하고 스케일이 커서 프리미엄 슬로우 트래블 무드가 영상으로도 잘 전달돼요.',
+          ],
+        },
+        {
+          title: '추천 시즌',
+          paragraphs: [
+            '황금빛을 원하면 늦여름~초가을, 푸른 층을 원하면 봄~초여름이 좋아요.',
+            '산지의 밤은 금방 쌀쌀해져 얇은 겉옷이 유용합니다.',
+          ],
+        },
+        {
+          title: '샷 리스트',
+          paragraphs: [
+            '능선 와이드, 논과 물결 질감 클로즈업, 노을 실루엣 워킹.',
+            '로컬 마켓 한 컷을 넣으면 이야기가 더 현실감 있어져요.',
+          ],
+        },
+      ],
+    },
+    'card-2': {
+      sections: [
+        {
+          title: '무엇을 먹을까',
+          paragraphs: [
+            '반미는 베트남을 대표하는 스트리트 푸드: 바삭한 빵, 새콤한 피클, 향긋한 허브, 풍부한 속 재료.',
+            '클래식 1개 + 지역 버전 1개로 “테이스팅 여정”을 만들기 좋아요.',
+          ],
+        },
+        {
+          title: '주문 팁',
+          paragraphs: [
+            '속 재료를 고르고, 매운맛은 칠리, 향은 허브 추가로 간단히 정리하면 됩니다.',
+            '아이스 커피와 함께하면 빠르고 상징적인 여행 리듬이 완성돼요.',
+          ],
+        },
+        {
+          title: '맛집 찾는 법',
+          paragraphs: [
+            '이른 시간에 가면 빵이 가장 바삭하고 재료가 신선한 경우가 많아요. 손님이 많은 곳이 대체로 믿을 만합니다.',
+            '현지인에게 “단골 반미집”을 물어보세요. 동네마다 추천이 달라 재미가 있습니다.',
+          ],
+        },
+      ],
+    },
+    'card-3': {
+      sections: [
+        {
+          title: '문화적 의미',
+          paragraphs: [
+            '아오자이는 전통과 현대가 만나는 “움직이는 우아함”입니다.',
+            '실루엣과 스토리가 동시에 살아서 사진/영상에 특히 잘 어울려요.',
+          ],
+        },
+        {
+          title: '어디서 만날까',
+          paragraphs: [
+            '맞춤 거리, 문화 공간, 졸업 시즌 등에서 자연스러운 일상의 순간을 발견할 수 있어요.',
+            '공공장소에서 근접 인물 촬영은 사전 양해가 좋습니다.',
+          ],
+        },
+        {
+          title: '스타일링 팁',
+          paragraphs: [
+            '배경은 깔끔하게, 움직임은 부드럽게. 천의 흐름과 형태가 주인공이 됩니다.',
+            '세로쓰기 타이포그래피는 에디토리얼 무드를 강화해줘요.',
+          ],
+        },
+      ],
+    },
+    'card-4': {
+      sections: [
+        {
+          title: '야경 무드',
+          paragraphs: [
+            '다낭은 해변의 여유와 도시의 빛을 동시에 담습니다. 다리, 강변 산책, 야식이 한 장면이 돼요.',
+            '따뜻함을 잃지 않으면서 “모던 베트남” 메시지를 만들기 좋습니다.',
+          ],
+        },
+        {
+          title: '추천 코스',
+          paragraphs: [
+            '한강 프로미나드 산책, 비 온 뒤 반사광, 다리를 리딩 라인으로 활용해 보세요.',
+            '카페나 루프톱 컷을 더하면 프리미엄 느낌이 살아납니다.',
+          ],
+        },
+        {
+          title: '실전 팁',
+          paragraphs: [
+            '야간 촬영은 안정화와 노출이 핵심입니다. 하이라이트를 줄이면 더 깔끔해요.',
+            '이동은 호출 서비스를 이용하면 편합니다.',
+          ],
+        },
+      ],
+    },
+  },
+};
+
+export function getLocalizedDiscoveryDetail(locale: LocaleKey, cardId: DiscoveryCard['id']): DiscoveryDetail {
+  const byLocale = DISCOVERY_DETAILS[locale] ?? DISCOVERY_DETAILS.en;
+  return byLocale[cardId] ?? DISCOVERY_DETAILS.en[cardId];
+}

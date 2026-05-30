@@ -118,6 +118,7 @@ export type TranslationKey =
   | 'app.footer.link.destinations'
   | 'app.footer.link.gastronomy'
   | 'app.footer.link.culturalHeritage'
+  | 'app.discovery.backToDiscoveries'
   | 'app.preview.topBar'
   | 'app.preview.sharedAlert';
 
@@ -229,6 +230,7 @@ export const TRANSLATIONS: Record<LocaleKey, Translations> = {
     'app.stories.sceneLabel': 'Scene',
     'app.stories.videoLabel': 'Video',
     'app.stories.chaptersLabel': 'Chapters',
+    'app.discovery.backToDiscoveries': '← Back to Discovery',
     'app.footer.copyright': '© 2026 Vietnam Discovery Campaign. Powered by PixVerse AI Video Production.',
     'app.footer.link.destinations': 'Destinations',
     'app.footer.link.gastronomy': 'Gastronomy',
@@ -340,6 +342,7 @@ export const TRANSLATIONS: Record<LocaleKey, Translations> = {
     'app.stories.sceneLabel': 'Cảnh',
     'app.stories.videoLabel': 'Video',
     'app.stories.chaptersLabel': 'Chương',
+    'app.discovery.backToDiscoveries': '← Quay lại khám phá',
     'app.footer.copyright': '© 2026 Vietnam Discovery Campaign. Video do PixVerse tạo.',
     'app.footer.link.destinations': 'Điểm đến',
     'app.footer.link.gastronomy': 'Ẩm thực',
@@ -449,6 +452,7 @@ export const TRANSLATIONS: Record<LocaleKey, Translations> = {
     'app.stories.sceneLabel': 'シーン',
     'app.stories.videoLabel': '動画',
     'app.stories.chaptersLabel': '章',
+    'app.discovery.backToDiscoveries': '← ディスカバリーへ戻る',
     'app.footer.copyright': '© 2026 Vietnam Discovery Campaign. PixVerse 動画を活用。',
     'app.footer.link.destinations': '目的地',
     'app.footer.link.gastronomy': '美食',
@@ -551,6 +555,7 @@ export const TRANSLATIONS: Record<LocaleKey, Translations> = {
     'app.stories.sceneLabel': '场景',
     'app.stories.videoLabel': '视频',
     'app.stories.chaptersLabel': '章节',
+    'app.discovery.backToDiscoveries': '← 返回探索列表',
     'app.footer.copyright': '© 2026 Vietnam Discovery Campaign. 由 PixVerse 影像驱动。',
     'app.footer.link.destinations': '目的地',
     'app.footer.link.gastronomy': '美食',
@@ -658,6 +663,7 @@ export const TRANSLATIONS: Record<LocaleKey, Translations> = {
     'app.stories.sceneLabel': '장면',
     'app.stories.videoLabel': '영상',
     'app.stories.chaptersLabel': '챕터',
+    'app.discovery.backToDiscoveries': '← 디스커버리로',
     'app.footer.copyright': '© 2026 Vietnam Discovery Campaign. PixVerse 영상 기반.',
     'app.footer.link.destinations': '여행지',
     'app.footer.link.gastronomy': '미식',

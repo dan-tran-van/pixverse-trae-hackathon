@@ -1,4 +1,5 @@
 import React from 'react';
+import Link from 'next/link';
 import styles from '@/styles/modules/DiscoveryCards.module.scss';
 import { DiscoveryCard } from '@/types/campaign';
 import { useWritingMode } from '@/components/WritingModeContext';
@@ -23,7 +24,7 @@ const DiscoveryCards: React.FC<DiscoveryCardsProps> = ({ cards }) => {
 
       <div className={styles.grid}>
         {cards.map((card) => (
-          <div key={card.id} className={styles.card}>
+          <Link key={card.id} href={`/discovery/${card.id}`} className={styles.card}>
             <div className={styles.imagePlaceholder}>
               <img
                 className={styles.cardImage}
@@ -39,9 +40,9 @@ const DiscoveryCards: React.FC<DiscoveryCardsProps> = ({ cards }) => {
             <div className={styles.info}>
               <h3 className={styles.cardTitle}>{card.title}</h3>
               <p className={styles.cardDescription}>{card.description}</p>
-              <button className={styles.learnMore}>{t('app.sections.discoveryMoments.learnMore')}</button>
+              <span className={styles.learnMore}>{t('app.sections.discoveryMoments.learnMore')}</span>
             </div>
-          </div>
+          </Link>
         ))}
       </div>
     </section>
