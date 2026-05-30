@@ -61,17 +61,19 @@ export default function CampaignPage() {
 
       {/* Global Audience View Switcher */}
       <div className={styles.localizationSection}>
-        <div className={styles.sectionHeader}>
-          <span className={styles.accent}>{t('app.page.section.worldwideInterest')}</span>
-          <h2>{t('app.page.section.globalStoryTitle')}</h2>
-          <p>{t('app.page.section.globalStoryDescription')}</p>
+        <div className={styles.localizationInner}>
+          <div className={styles.sectionHeader}>
+            <span className={styles.accent}>{t('app.page.section.worldwideInterest')}</span>
+            <h2>{t('app.page.section.globalStoryTitle')}</h2>
+            <p>{t('app.page.section.globalStoryDescription')}</p>
+          </div>
+
+          <AudienceSwitcher
+            audiences={AUDIENCES}
+            selectedKey={selectedAudienceKey}
+            onSelect={handleAudienceChange}
+          />
         </div>
-        
-        <AudienceSwitcher 
-          audiences={AUDIENCES} 
-          selectedKey={selectedAudienceKey} 
-          onSelect={handleAudienceChange} 
-        />
         
         {/* <div className={styles.layoutPreviewWrapper}>
           <div className={styles.sectionHeader}>
