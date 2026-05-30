@@ -6,7 +6,7 @@ import HeroSection from '@/components/HeroSection';
 import VideoStorySection from '@/components/VideoStorySection';
 import VerticalWritingPreview from '@/components/VerticalWritingPreview';
 import DiscoveryCards from '@/components/DiscoveryCards';
-import { AUDIENCES, SCENE_CHAPTERS, DISCOVERY_CARDS } from '@/data/campaignData';
+import { AUDIENCES } from '@/data/campaignData';
 import { AudienceKey, WritingMode } from '@/types/campaign';
 import styles from './page.module.scss';
 import { useWritingMode } from '@/components/WritingModeContext';
@@ -42,7 +42,7 @@ export default function PublicCampaignPage() {
       
       <HeroSection 
         variant={currentAudience} 
-        onCtaClick={() => alert('This is a shared preview page.')}
+        onCtaClick={() => alert(t('app.preview.sharedAlert'))}
         onExploreClick={() => document.getElementById('discovery')?.scrollIntoView({ behavior: 'smooth' })}
       />
 
@@ -58,7 +58,7 @@ export default function PublicCampaignPage() {
 
       <footer className={styles.footer}>
         <div className={styles.footerContent}>
-          <p>© 2026 Vietnam Discovery Campaign. Powered by PixVerse AI Video.</p>
+          <p>{t('app.footer.copyright')}</p>
         </div>
       </footer>
     </main>

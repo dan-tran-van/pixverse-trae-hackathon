@@ -25,6 +25,15 @@ const DiscoveryCards: React.FC<DiscoveryCardsProps> = ({ cards }) => {
         {cards.map((card) => (
           <div key={card.id} className={styles.card}>
             <div className={styles.imagePlaceholder}>
+              <img
+                className={styles.cardImage}
+                src={`/images/discovery/${card.id}.jpg`}
+                alt={card.title}
+                loading="lazy"
+                onError={(e) => {
+                  e.currentTarget.style.display = 'none';
+                }}
+              />
               <span className={styles.category}>{t(`app.categories.${card.category}` as const)}</span>
             </div>
             <div className={styles.info}>

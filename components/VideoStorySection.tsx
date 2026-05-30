@@ -1,4 +1,5 @@
 import React, { useRef, useState } from 'react';
+import Link from 'next/link';
 import styles from '@/styles/modules/VideoStorySection.module.scss';
 import { SceneChapter } from '@/types/campaign';
 import { useWritingMode } from '@/components/WritingModeContext';
@@ -56,6 +57,9 @@ const VideoStorySection: React.FC<VideoStorySectionProps> = ({ chapters, onChapt
           <div className={styles.activeChapterInfo}>
             <h3>{activeChapter.title}</h3>
             <p>{activeChapter.description}</p>
+            <Link className={styles.readStoryLink} href={`/stories/${activeChapter.id}`}>
+              {t('app.stories.readStory')}
+            </Link>
           </div>
         </div>
 

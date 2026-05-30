@@ -104,11 +104,22 @@ export type TranslationKey =
   | 'app.studio.shareReady'
   | 'app.studio.openPreview'
   | 'app.studio.previewHeader'
+  | 'app.stories.title'
+  | 'app.stories.subtitle'
+  | 'app.stories.readStory'
+  | 'app.stories.backToCampaign'
+  | 'app.stories.backToStories'
+  | 'app.stories.watchInVideo'
+  | 'app.stories.imagePlaceholder'
+  | 'app.stories.sceneLabel'
+  | 'app.stories.videoLabel'
+  | 'app.stories.chaptersLabel'
   | 'app.footer.copyright'
   | 'app.footer.link.destinations'
   | 'app.footer.link.gastronomy'
   | 'app.footer.link.culturalHeritage'
-  | 'app.preview.topBar';
+  | 'app.preview.topBar'
+  | 'app.preview.sharedAlert';
 
 export type Translations = Record<TranslationKey, string>;
 
@@ -208,12 +219,23 @@ export const TRANSLATIONS: Record<LocaleKey, Translations> = {
     'app.studio.shareReady': 'Your campaign is ready!',
     'app.studio.openPreview': 'Open Preview ↗',
     'app.studio.previewHeader': 'Live Preview',
+    'app.stories.title': 'Story Chapters',
+    'app.stories.subtitle': 'Explore the campaign scene-by-scene with localized editorial stories.',
+    'app.stories.readStory': 'Read story →',
+    'app.stories.backToCampaign': '← Back to Campaign',
+    'app.stories.backToStories': '← Back to Stories',
+    'app.stories.watchInVideo': 'Watch this scene',
+    'app.stories.imagePlaceholder': 'Image placeholder: {path}',
+    'app.stories.sceneLabel': 'Scene',
+    'app.stories.videoLabel': 'Video',
+    'app.stories.chaptersLabel': 'Chapters',
     'app.footer.copyright': '© 2026 Vietnam Discovery Campaign. Powered by PixVerse AI Video Production.',
     'app.footer.link.destinations': 'Destinations',
     'app.footer.link.gastronomy': 'Gastronomy',
     'app.footer.link.culturalHeritage': 'Cultural Heritage',
     'app.preview.topBar':
       'You are viewing a shared Vietnam Discovery Campaign localized for {audience} ({mode})',
+    'app.preview.sharedAlert': 'This is a shared preview page.',
   },
   vi: {
     'app.video.unsupported': 'Trình duyệt của bạn không hỗ trợ phát video.',
@@ -308,11 +330,22 @@ export const TRANSLATIONS: Record<LocaleKey, Translations> = {
     'app.studio.shareReady': 'Chiến dịch của bạn đã sẵn sàng!',
     'app.studio.openPreview': 'Mở bản xem trước ↗',
     'app.studio.previewHeader': 'Xem trước trực tiếp',
+    'app.stories.title': 'Chương câu chuyện',
+    'app.stories.subtitle': 'Khám phá chiến dịch theo từng cảnh với câu chuyện biên tập được bản địa hoá.',
+    'app.stories.readStory': 'Đọc câu chuyện →',
+    'app.stories.backToCampaign': '← Về trang chiến dịch',
+    'app.stories.backToStories': '← Về danh sách câu chuyện',
+    'app.stories.watchInVideo': 'Xem cảnh này',
+    'app.stories.imagePlaceholder': 'Ảnh placeholder: {path}',
+    'app.stories.sceneLabel': 'Cảnh',
+    'app.stories.videoLabel': 'Video',
+    'app.stories.chaptersLabel': 'Chương',
     'app.footer.copyright': '© 2026 Vietnam Discovery Campaign. Video do PixVerse tạo.',
     'app.footer.link.destinations': 'Điểm đến',
     'app.footer.link.gastronomy': 'Ẩm thực',
     'app.footer.link.culturalHeritage': 'Di sản',
     'app.preview.topBar': 'Bạn đang xem bản chia sẻ cho {audience} ({mode})',
+    'app.preview.sharedAlert': 'Đây là trang xem trước được chia sẻ.',
   },
   ja: {
     'app.video.unsupported': 'お使いのブラウザは video タグに対応していません。',
@@ -406,11 +439,22 @@ export const TRANSLATIONS: Record<LocaleKey, Translations> = {
     'app.studio.shareReady': 'キャンペーンの準備ができました！',
     'app.studio.openPreview': 'プレビューを開く ↗',
     'app.studio.previewHeader': 'ライブプレビュー',
+    'app.stories.title': 'ストーリー章',
+    'app.stories.subtitle': 'シーンごとの編集ストーリーで、キャンペーンを深く味わえます。',
+    'app.stories.readStory': 'ストーリーを読む →',
+    'app.stories.backToCampaign': '← キャンペーンへ戻る',
+    'app.stories.backToStories': '← ストーリー一覧へ',
+    'app.stories.watchInVideo': 'このシーンを見る',
+    'app.stories.imagePlaceholder': '画像プレースホルダー: {path}',
+    'app.stories.sceneLabel': 'シーン',
+    'app.stories.videoLabel': '動画',
+    'app.stories.chaptersLabel': '章',
     'app.footer.copyright': '© 2026 Vietnam Discovery Campaign. PixVerse 動画を活用。',
     'app.footer.link.destinations': '目的地',
     'app.footer.link.gastronomy': '美食',
     'app.footer.link.culturalHeritage': '文化遺産',
     'app.preview.topBar': '{audience} 向けの共有プレビュー（{mode}）を表示中',
+    'app.preview.sharedAlert': 'これは共有プレビューページです。',
   },
   zh: {
     'app.video.unsupported': '你的浏览器不支持 video 标签。',
@@ -497,11 +541,22 @@ export const TRANSLATIONS: Record<LocaleKey, Translations> = {
     'app.studio.shareReady': '你的活动已准备就绪！',
     'app.studio.openPreview': '打开预览 ↗',
     'app.studio.previewHeader': '实时预览',
+    'app.stories.title': '故事章节',
+    'app.stories.subtitle': '按场景逐章探索，体验本地化的叙事与文案。',
+    'app.stories.readStory': '阅读故事 →',
+    'app.stories.backToCampaign': '← 返回活动页',
+    'app.stories.backToStories': '← 返回故事列表',
+    'app.stories.watchInVideo': '观看本场景',
+    'app.stories.imagePlaceholder': '图片占位: {path}',
+    'app.stories.sceneLabel': '场景',
+    'app.stories.videoLabel': '视频',
+    'app.stories.chaptersLabel': '章节',
     'app.footer.copyright': '© 2026 Vietnam Discovery Campaign. 由 PixVerse 影像驱动。',
     'app.footer.link.destinations': '目的地',
     'app.footer.link.gastronomy': '美食',
     'app.footer.link.culturalHeritage': '文化遗产',
     'app.preview.topBar': '你正在查看面向 {audience} 的分享预览（{mode}）',
+    'app.preview.sharedAlert': '这是一个分享预览页面。',
   },
   ko: {
     'app.video.unsupported': '브라우저가 video 태그를 지원하지 않습니다.',
@@ -593,10 +648,21 @@ export const TRANSLATIONS: Record<LocaleKey, Translations> = {
     'app.studio.shareReady': '캠페인이 준비됐어요!',
     'app.studio.openPreview': '프리뷰 열기 ↗',
     'app.studio.previewHeader': '라이브 프리뷰',
+    'app.stories.title': '스토리 챕터',
+    'app.stories.subtitle': '장면별 편집 스토리로 캠페인을 깊게 탐험해보세요.',
+    'app.stories.readStory': '스토리 읽기 →',
+    'app.stories.backToCampaign': '← 캠페인으로',
+    'app.stories.backToStories': '← 스토리 목록',
+    'app.stories.watchInVideo': '이 장면 보기',
+    'app.stories.imagePlaceholder': '이미지 플레이스홀더: {path}',
+    'app.stories.sceneLabel': '장면',
+    'app.stories.videoLabel': '영상',
+    'app.stories.chaptersLabel': '챕터',
     'app.footer.copyright': '© 2026 Vietnam Discovery Campaign. PixVerse 영상 기반.',
     'app.footer.link.destinations': '여행지',
     'app.footer.link.gastronomy': '미식',
     'app.footer.link.culturalHeritage': '문화유산',
     'app.preview.topBar': '{audience} 대상 공유 프리뷰 ({mode})',
+    'app.preview.sharedAlert': '공유 프리뷰 페이지입니다.',
   },
 };

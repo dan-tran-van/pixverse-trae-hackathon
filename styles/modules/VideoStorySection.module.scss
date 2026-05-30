@@ -82,6 +82,14 @@
   }
 }
 
+.readStoryLink {
+  display: inline-block;
+  margin-block-start: 1rem;
+  font-weight: 900;
+  color: var(--primary);
+  letter-spacing: 0.02em;
+}
+
 .chaptersColumn {
   .chaptersTitle {
     font-size: 1.2rem;
