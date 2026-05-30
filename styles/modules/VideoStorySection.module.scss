@@ -1,13 +1,14 @@
 .container {
   background: #fff;
-  border-top: 1px solid var(--border);
-  border-bottom: 1px solid var(--border);
+  border-block-start: 1px solid var(--border);
+  border-block-end: 1px solid var(--border);
 }
 
 .header {
   text-align: center;
-  max-width: 700px;
-  margin: 0 auto 3rem;
+  max-inline-size: 700px;
+  margin-inline: auto;
+  margin-block-end: 3rem;
 
   .title {
     font-size: 2.5rem;
@@ -29,33 +30,34 @@
 
 .videoColumn {
   position: sticky;
-  top: 2rem;
+  inset-block-start: 2rem;
 }
 
 .videoWrapper {
   position: relative;
-  width: 100%;
+  inline-size: 100%;
   aspect-ratio: 16 / 9;
   background: #000;
   border-radius: var(--radius);
   overflow: hidden;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-  margin-bottom: 1.5rem;
+  margin-block-end: 1.5rem;
 }
 
 .video {
-  width: 100%;
-  height: 100%;
+  inline-size: 100%;
+  block-size: 100%;
   display: block;
 }
 
 .chapterOverlay {
   position: absolute;
-  top: 1rem;
-  left: 1rem;
+  inset-block-start: 1rem;
+  inset-inline-start: 1rem;
   background: rgba(0, 0, 0, 0.6);
   color: white;
-  padding: 0.5rem 1rem;
+  padding-block: 0.5rem;
+  padding-inline: 1rem;
   border-radius: 50px;
   font-size: 0.8rem;
   backdrop-filter: blur(5px);
@@ -65,12 +67,12 @@
 .activeChapterInfo {
   h3 {
     font-size: 1.5rem;
-    margin-bottom: 0.5rem;
+    margin-block-end: 0.5rem;
     color: var(--foreground);
   }
   p {
     color: var(--text-muted);
-    margin-bottom: 0;
+    margin-block-end: 0;
   }
 }
 
@@ -79,9 +81,9 @@
     font-size: 1.2rem;
     text-transform: uppercase;
     letter-spacing: 1px;
-    margin-bottom: 1.5rem;
+    margin-block-end: 1.5rem;
     color: var(--text-muted);
-    border-bottom: 2px solid var(--primary);
+    border-block-end: 2px solid var(--primary);
     display: inline-block;
   }
 }
@@ -125,8 +127,8 @@
 
 .chapterNumber {
   flex-shrink: 0;
-  width: 40px;
-  height: 40px;
+  inline-size: 40px;
+  block-size: 40px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -139,11 +141,11 @@
 
 .chapterText {
   h4 {
-    margin-bottom: 0.25rem;
+    margin-block-end: 0.25rem;
     font-size: 1.1rem;
   }
   p {
-    margin-bottom: 0;
+    margin-block-end: 0;
     font-size: 0.9rem;
     color: var(--text-muted);
     display: -webkit-box;
@@ -153,12 +155,52 @@
   }
 }
 
-@media (max-width: 992px) {
+/* Orientation Specific Styles */
+@media (orientation: portrait) {
   .content {
     grid-template-columns: 1fr;
+    gap: 2rem;
   }
-
   .videoColumn {
     position: static;
+  }
+  .header .title {
+    font-size: 2rem;
+  }
+}
+
+@media (orientation: landscape) {
+  .content {
+    grid-template-columns: 1.5fr 1fr;
+  }
+}
+
+/* Vertical Mode Logic: Swap orientation styles */
+:global(.isVerticalLayout) {
+  @media (orientation: portrait) {
+    /* Reusing Landscape Styles */
+    .content {
+      grid-template-columns: 1.5fr 1fr;
+    }
+    .videoColumn {
+      position: sticky;
+    }
+    .header .title {
+      font-size: 2.5rem;
+    }
+  }
+
+  @media (orientation: landscape) {
+    /* Reusing Portrait Styles */
+    .content {
+      grid-template-columns: 1fr;
+      gap: 2rem;
+    }
+    .videoColumn {
+      position: static;
+    }
+    .header .title {
+      font-size: 2rem;
+    }
   }
 }

@@ -22,7 +22,7 @@ export default function PublicCampaignPage() {
   const currentAudience = AUDIENCES.find(a => a.key === audienceKey) || AUDIENCES[0];
 
   return (
-    <main className={styles.main}>
+    <main className={`${styles.main} ${writingMode === 'vertical' ? 'isVerticalLayout' : ''}`}>
       <div className={styles.topBar}>
         <p>You are viewing a shared Vietnam Discovery Campaign localized for <strong>{currentAudience.label}</strong> ({writingMode})</p>
       </div>

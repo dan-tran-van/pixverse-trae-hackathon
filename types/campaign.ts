@@ -27,8 +27,15 @@ export interface DiscoveryCard {
   category: 'Places' | 'Food' | 'Culture' | 'City Life';
 }
 
-export interface CampaignState {
-  audience: AudienceKey;
-  writingMode: WritingMode;
-  selectedChapterId: string;
+export interface CampaignComment {
+  id: string;
+  user: string;
+  text: string;
+  timestamp: string;
+}
+
+export interface CampaignStats {
+  likes: number;
+  bookings: number;
+  comments: CampaignComment[];
 }

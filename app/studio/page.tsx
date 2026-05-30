@@ -107,7 +107,7 @@ export default function StudioPage() {
         </div>
       </aside>
 
-      <main className={styles.preview}>
+      <main className={`${styles.preview} ${writingMode === 'vertical' ? 'isVerticalLayout' : ''}`}>
         <div className={styles.previewHeader}>
           <span>Live Preview</span>
           <div className={styles.deviceIcons}>

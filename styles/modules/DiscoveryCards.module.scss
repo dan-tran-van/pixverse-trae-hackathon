@@ -4,8 +4,9 @@
 
 .header {
   text-align: center;
-  max-width: 700px;
-  margin: 0 auto 3rem;
+  max-inline-size: 700px;
+  margin-inline: auto;
+  margin-block-end: 3rem;
 
   .title {
     font-size: 2.5rem;
@@ -42,7 +43,7 @@
 }
 
 .imagePlaceholder {
-  height: 200px;
+  block-size: 200px;
   background: #eee;
   position: relative;
   transition: var(--transition);
@@ -53,11 +54,12 @@
 
 .category {
   position: absolute;
-  top: 1rem;
-  left: 1rem;
+  inset-block-start: 1rem;
+  inset-inline-start: 1rem;
   background: var(--primary);
   color: white;
-  padding: 0.25rem 0.75rem;
+  padding-block: 0.25rem;
+  padding-inline: 0.75rem;
   font-size: 0.7rem;
   font-weight: 700;
   text-transform: uppercase;
@@ -71,14 +73,14 @@
 
 .cardTitle {
   font-size: 1.25rem;
-  margin-bottom: 0.75rem;
+  margin-block-end: 0.75rem;
 }
 
 .cardDescription {
   font-size: 0.95rem;
   color: var(--text-muted);
-  margin-bottom: 1.5rem;
-  min-height: 3rem;
+  margin-block-end: 1.5rem;
+  min-block-size: 3rem;
 }
 
 .learnMore {
@@ -90,5 +92,46 @@
 
   &:hover {
     letter-spacing: 2px;
+  }
+}
+
+/* Orientation Specific Styles */
+@media (orientation: portrait) {
+  .grid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+  .header .title {
+    font-size: 2rem;
+  }
+}
+
+@media (orientation: landscape) {
+  .grid {
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  }
+}
+
+/* Vertical Mode Logic: Swap orientation styles */
+:global(.isVerticalLayout) {
+  @media (orientation: portrait) {
+    /* Reusing Landscape Styles */
+    .grid {
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    }
+    .header .title {
+      font-size: 2.5rem;
+    }
+  }
+
+  @media (orientation: landscape) {
+    /* Reusing Portrait Styles */
+    .grid {
+      grid-template-columns: 1fr;
+      gap: 1.5rem;
+    }
+    .header .title {
+      font-size: 2rem;
+    }
   }
 }

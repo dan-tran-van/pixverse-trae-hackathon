@@ -19,7 +19,7 @@
 
 html,
 body {
-  max-width: 100vw;
+  max-inline-size: 100vi;
   overflow-x: hidden;
   background: var(--background);
   color: var(--foreground);
@@ -41,23 +41,24 @@ button {
 }
 
 img, video {
-  max-width: 100%;
-  height: auto;
+  max-inline-size: 100%;
+  block-size: auto;
 }
 
 section {
-  padding: 4rem 1.5rem;
-  max-width: 1200px;
-  margin: 0 auto;
+  padding-block: 4rem;
+  padding-inline: 1.5rem;
+  max-inline-size: 1200px;
+  margin-inline: auto;
 }
 
 h1, h2, h3, h4, h5, h6 {
-  margin-bottom: 1rem;
+  margin-block-end: 1rem;
   line-height: 1.2;
 }
 
 p {
-  margin-bottom: 1.5rem;
+  margin-block-end: 1.5rem;
 }
 
 .vertical-text {
@@ -65,8 +66,29 @@ p {
   text-orientation: mixed;
 }
 
+.isVerticalLayout {
+  writing-mode: vertical-rl;
+  text-orientation: mixed;
+}
+
+/* Orientation Specific Globals */
+@media (orientation: portrait) {
+  section {
+    padding-block: 2rem;
+    padding-inline: 1rem;
+  }
+}
+
+@media (orientation: landscape) {
+  section {
+    padding-block: 4rem;
+    padding-inline: 2rem;
+  }
+}
+
 @media (max-width: 768px) {
   section {
-    padding: 2rem 1rem;
+    padding-block: 2rem;
+    padding-inline: 1rem;
   }
 }

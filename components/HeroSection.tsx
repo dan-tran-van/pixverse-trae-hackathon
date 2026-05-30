@@ -22,7 +22,6 @@ const HeroSection: React.FC<HeroSectionProps> = ({ variant, onCtaClick, onExplor
         >
           Your browser does not support the video tag.
         </video>
-        <div className={styles.videoOverlay}></div>
       </div>
       <div className={styles.content}>
         <div className={styles.headerInfo}>
@@ -38,10 +37,6 @@ const HeroSection: React.FC<HeroSectionProps> = ({ variant, onCtaClick, onExplor
             Explore Scenes
           </button>
         </div>
-      </div>
-      <div className={styles.scrollIndicator} onClick={onExploreClick}>
-        <span>Discover Vietnam</span>
-        <div className={styles.mouse}></div>
       </div>
     </section>
   );

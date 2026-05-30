@@ -74,31 +74,31 @@ export const SCENE_CHAPTERS: SceneChapter[] = [
     id: 'hanoi',
     title: 'Hanoi',
     description: 'The soul of Vietnam, where history breathes in every ancient alley.',
-    timestamp: 10,
+    timestamp: 6,
   },
   {
     id: 'hoi-an',
     title: 'Hội An',
     description: 'A lantern-lit journey through a timeless UNESCO World Heritage town.',
-    timestamp: 20,
+    timestamp: 12,
   },
   {
     id: 'food',
     title: 'Food',
     description: 'A symphony of flavors, from street-side Pho to royal Hue cuisine.',
-    timestamp: 30,
+    timestamp: 18,
   },
   {
     id: 'heritage',
     title: 'Heritage',
     description: 'Centuries of tradition preserved in temples, pagodas, and festivals.',
-    timestamp: 40,
+    timestamp: 24,
   },
   {
     id: 'modern-vietnam',
     title: 'Modern Vietnam',
     description: 'The dynamic energy of Saigon and the rising skylines of tomorrow.',
-    timestamp: 50,
+    timestamp: 30,
   },
 ];
 

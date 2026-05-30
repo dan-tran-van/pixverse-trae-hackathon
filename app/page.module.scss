@@ -1,23 +1,24 @@
 .main {
-  min-height: 100vh;
+  min-block-size: 100vb;
   display: flex;
   flex-direction: column;
 }
 
 .localizationSection {
   background: #fdfaf6;
-  padding: 4rem 0;
+  padding-block: 4rem;
 }
 
 .layoutPreviewWrapper {
-  max-width: 1200px;
-  margin: 4rem auto 0;
-  padding: 0 1.5rem;
+  max-inline-size: 1200px;
+  margin-inline: auto;
+  margin-block-start: 4rem;
+  padding-inline: 1.5rem;
 }
 
 .sectionHeader {
   text-align: center;
-  margin-bottom: 3rem;
+  margin-block-end: 3rem;
 
   .accent {
     font-size: 0.75rem;
@@ -26,31 +27,32 @@
     font-weight: 800;
     color: var(--primary);
     display: block;
-    margin-bottom: 0.5rem;
+    margin-block-end: 0.5rem;
   }
 
   h2 {
     font-size: 2.5rem;
-    margin-bottom: 1rem;
+    margin-block-end: 1rem;
   }
 
   p {
     color: var(--text-muted);
-    max-width: 600px;
-    margin: 0 auto;
+    max-inline-size: 600px;
+    margin-inline: auto;
   }
 }
 
 .studioBridge {
   background: #111;
   color: white;
-  padding: 8rem 1.5rem;
+  padding-block: 8rem;
+  padding-inline: 1.5rem;
   overflow: hidden;
 }
 
 .studioContent {
-  max-width: 1200px;
-  margin: 0 auto;
+  max-inline-size: 1200px;
+  margin-inline: auto;
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 4rem;
@@ -60,7 +62,8 @@
 .studioText {
   .badge {
     display: inline-block;
-    padding: 0.4rem 1rem;
+    padding-block: 0.4rem;
+    padding-inline: 1rem;
     background: var(--primary);
     color: white;
     font-size: 0.7rem;
@@ -68,26 +71,27 @@
     text-transform: uppercase;
     letter-spacing: 2px;
     border-radius: 4px;
-    margin-bottom: 1.5rem;
+    margin-block-end: 1.5rem;
   }
 
   h2 {
     font-size: 3rem;
-    margin-bottom: 1.5rem;
+    margin-block-end: 1.5rem;
     line-height: 1.1;
   }
 
   p {
     font-size: 1.1rem;
     color: rgba(255, 255, 255, 0.7);
-    margin-bottom: 2.5rem;
+    margin-block-end: 2.5rem;
     line-height: 1.6;
   }
 }
 
 .studioBtn {
   display: inline-block;
-  padding: 1.25rem 2.5rem;
+  padding-block: 1.25rem;
+  padding-inline: 2.5rem;
   background: white;
   color: black;
   border-radius: 50px;
@@ -106,7 +110,7 @@
 }
 
 .mockInterface {
-  width: 100%;
+  inline-size: 100%;
   aspect-ratio: 4 / 3;
   background: #222;
   border-radius: 12px;
@@ -117,10 +121,10 @@
 }
 
 .mockSidebar {
-  width: 80px;
-  height: 100%;
+  inline-size: 80px;
+  block-size: 100%;
   background: #1a1a1a;
-  border-right: 1px solid rgba(255, 255, 255, 0.05);
+  border-inline-end: 1px solid rgba(255, 255, 255, 0.05);
 }
 
 .mockMain {
@@ -132,7 +136,7 @@
 }
 
 .mockVideo {
-  width: 100%;
+  inline-size: 100%;
   aspect-ratio: 16 / 9;
   background: #333;
   border-radius: 8px;
@@ -145,24 +149,25 @@
 
   &::before, &::after {
     content: '';
-    height: 10px;
+    block-size: 10px;
     background: #333;
     border-radius: 5px;
   }
 
-  &::before { width: 80%; }
-  &::after { width: 60%; }
+  &::before { inline-size: 80%; }
+  &::after { inline-size: 60%; }
 }
 
 .footer {
   background: #000;
   color: white;
-  padding: 4rem 1.5rem;
+  padding-block: 4rem;
+  padding-inline: 1.5rem;
 }
 
 .footerContent {
-  max-width: 1200px;
-  margin: 0 auto;
+  max-inline-size: 1200px;
+  margin-inline: auto;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -191,22 +196,54 @@
   }
 }
 
-@media (max-width: 992px) {
+/* Orientation Specific Styles */
+@media (orientation: portrait) {
   .studioContent {
     grid-template-columns: 1fr;
     text-align: center;
     gap: 3rem;
   }
-  
   .studioText h2 {
-    font-size: 2.5rem;
+    font-size: 2.25rem;
   }
-}
-
-@media (max-width: 768px) {
   .footerContent {
     flex-direction: column;
     gap: 2rem;
-    text-align: center;
+  }
+}
+
+@media (orientation: landscape) {
+  .studioContent {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+/* Vertical Mode Logic: Swap orientation styles */
+:global(.isVerticalLayout) {
+  @media (orientation: portrait) {
+    /* Reusing Landscape Styles */
+    .studioContent {
+      grid-template-columns: 1fr 1fr;
+      text-align: left;
+    }
+    .footerContent {
+      flex-direction: row;
+    }
+  }
+
+  @media (orientation: landscape) {
+    /* Reusing Portrait Styles */
+    .studioContent {
+      grid-template-columns: 1fr;
+      text-align: center;
+      gap: 3rem;
+    }
+    .studioText h2 {
+      font-size: 2.25rem;
+    }
+    .footerContent {
+      flex-direction: column;
+      gap: 2rem;
+    }
   }
 }
