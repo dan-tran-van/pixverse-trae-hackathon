@@ -20,6 +20,19 @@ export function WritingModeProvider({ children }: { children: React.ReactNode })
     }
   }, []);
 
+  useEffect(() => {
+    if (writingMode === 'vertical') {
+      document.body.style.setProperty('writing-mode', 'vertical-rl');
+      document.body.style.setProperty('text-orientation', 'mixed');
+      document.body.dataset.writingMode = 'vertical';
+      return;
+    }
+
+    document.body.style.setProperty('writing-mode', 'horizontal-tb');
+    document.body.style.removeProperty('text-orientation');
+    document.body.dataset.writingMode = 'horizontal';
+  }, [writingMode]);
+
   const setWritingModeAndPersist = (mode: WritingMode) => {
     setWritingMode(mode);
     localStorage.setItem('writing_mode', mode);
@@ -40,4 +53,3 @@ export function useWritingMode() {
   }
   return ctx;
 }
-

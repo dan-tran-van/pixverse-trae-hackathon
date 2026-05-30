@@ -192,7 +192,7 @@
 
 .previewLink {
   display: block;
-  text-align: center;
+  text-align: start;
   font-size: 0.85rem;
   font-weight: 700;
   color: #2f855a;
@@ -211,8 +211,6 @@
 }
 
 .preview--vertical {
-  writing-mode: vertical-rl;
-  text-orientation: mixed;
 }
 
 .previewHeader {

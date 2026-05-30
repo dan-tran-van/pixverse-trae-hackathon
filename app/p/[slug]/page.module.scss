@@ -8,8 +8,6 @@
 }
 
 .main--vertical {
-  writing-mode: vertical-rl;
-  text-orientation: mixed;
 }
 
 .topBar {
@@ -17,7 +15,7 @@
   color: white;
   padding-block: 0.5rem;
   padding-inline: 0.5rem;
-  text-align: center;
+  text-align: start;
   font-size: 0.8rem;
   letter-spacing: 0.5px;
   position: sticky;
@@ -40,7 +38,7 @@
   padding-block: 3rem;
   padding-inline: 1.5rem;
   margin-block-start: auto;
-  text-align: center;
+  text-align: start;
 
   p {
     margin: 0;

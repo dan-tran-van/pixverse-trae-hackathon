@@ -8,8 +8,6 @@
 }
 
 .main--vertical {
-  writing-mode: vertical-rl;
-  // text-orientation: mixed;
 }
 
 .localizationSection {
@@ -25,7 +23,7 @@
 }
 
 .sectionHeader {
-  text-align: center;
+  text-align: start;
   margin-block-end: 3rem;
 
   .accent {
@@ -46,7 +44,7 @@
   p {
     color: var(--text-muted);
     max-inline-size: 600px;
-    margin-inline: auto;
+    margin-inline: 0;
   }
 }
 

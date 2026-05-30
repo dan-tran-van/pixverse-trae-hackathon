@@ -10,9 +10,9 @@
 }
 
 .header {
-  text-align: center;
+  text-align: start;
   max-inline-size: 700px;
-  margin-inline: auto;
+  margin-inline: 0;
   margin-block-end: 2rem;
 
   .title {
@@ -28,14 +28,14 @@
 
 .controls {
   display: flex;
-  justify-content: center;
+  justify-content: flex-start;
   gap: 0.5rem;
   margin-block-end: 3rem;
   background: rgba(0, 0, 0, 0.05);
   padding-block: 0.25rem;
   padding-inline: 0.25rem;
   inline-size: fit-content;
-  margin-inline: auto;
+  margin-inline: 0;
   border-radius: 50px;
 }
 
@@ -56,7 +56,7 @@
 
 .previewArea {
   display: flex;
-  justify-content: center;
+  justify-content: flex-start;
   min-block-size: 500px;
   transition: var(--transition);
 
@@ -163,7 +163,7 @@
 }
 
 .warning {
-  text-align: center;
+  text-align: start;
   font-size: 0.8rem;
   color: var(--text-muted);
   margin-block-start: 2rem;

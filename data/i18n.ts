@@ -61,6 +61,13 @@ export type TranslationKey =
   | 'app.sections.interactions.modal.dateLabel'
   | 'app.sections.interactions.modal.confirm'
   | 'app.sections.interactions.modal.close'
+  | 'app.sections.interactions.modal.nameLabel'
+  | 'app.sections.interactions.modal.phoneLabel'
+  | 'app.sections.interactions.modal.emailLabel'
+  | 'app.sections.interactions.modal.phonePlaceholder'
+  | 'app.sections.interactions.modal.namePlaceholder'
+  | 'app.sections.interactions.modal.emailPlaceholder'
+  | 'app.sections.interactions.modal.phoneError'
   | 'app.sections.audienceSwitcher.title'
   | 'app.sections.audienceSwitcher.description'
   | 'app.sections.audienceSwitcher.livePreview'
@@ -153,6 +160,13 @@ export const TRANSLATIONS: Record<LocaleKey, Translations> = {
     'app.sections.interactions.modal.dateLabel': 'Travel date',
     'app.sections.interactions.modal.confirm': 'Confirm',
     'app.sections.interactions.modal.close': 'Close',
+    'app.sections.interactions.modal.nameLabel': 'Full name',
+    'app.sections.interactions.modal.phoneLabel': 'Phone number',
+    'app.sections.interactions.modal.emailLabel': 'Email (optional)',
+    'app.sections.interactions.modal.namePlaceholder': 'Your name',
+    'app.sections.interactions.modal.phonePlaceholder': 'e.g. +81 90 1234 5678',
+    'app.sections.interactions.modal.emailPlaceholder': 'you@example.com',
+    'app.sections.interactions.modal.phoneError': 'Please enter a valid phone number.',
     'app.sections.audienceSwitcher.title': 'Global Reach, Local Soul',
     'app.sections.audienceSwitcher.description':
       'Select an audience to see how the campaign adapts its message and visual style for different cultures.',
@@ -247,6 +261,13 @@ export const TRANSLATIONS: Record<LocaleKey, Translations> = {
     'app.sections.interactions.modal.dateLabel': 'Ngày đi',
     'app.sections.interactions.modal.confirm': 'Xác nhận',
     'app.sections.interactions.modal.close': 'Đóng',
+    'app.sections.interactions.modal.nameLabel': 'Họ và tên',
+    'app.sections.interactions.modal.phoneLabel': 'Số điện thoại',
+    'app.sections.interactions.modal.emailLabel': 'Email (không bắt buộc)',
+    'app.sections.interactions.modal.namePlaceholder': 'Tên của bạn',
+    'app.sections.interactions.modal.phonePlaceholder': 'Ví dụ: +84 912 345 678',
+    'app.sections.interactions.modal.emailPlaceholder': 'ban@example.com',
+    'app.sections.interactions.modal.phoneError': 'Vui lòng nhập số điện thoại hợp lệ.',
     'app.sections.audienceSwitcher.title': 'Vươn xa toàn cầu, giữ hồn địa phương',
     'app.sections.audienceSwitcher.description':
       'Chọn đối tượng để xem chiến dịch thay đổi thông điệp và phong cách hình ảnh theo văn hoá.',
@@ -338,6 +359,13 @@ export const TRANSLATIONS: Record<LocaleKey, Translations> = {
     'app.sections.interactions.modal.dateLabel': '旅行日',
     'app.sections.interactions.modal.confirm': '確定',
     'app.sections.interactions.modal.close': '閉じる',
+    'app.sections.interactions.modal.nameLabel': 'お名前',
+    'app.sections.interactions.modal.phoneLabel': '電話番号',
+    'app.sections.interactions.modal.emailLabel': 'メール（任意）',
+    'app.sections.interactions.modal.namePlaceholder': 'お名前',
+    'app.sections.interactions.modal.phonePlaceholder': '例：+81 90 1234 5678',
+    'app.sections.interactions.modal.emailPlaceholder': 'you@example.com',
+    'app.sections.interactions.modal.phoneError': '有効な電話番号を入力してください。',
     'app.sections.audienceSwitcher.title': '世界へ、ローカルな心で',
     'app.sections.audienceSwitcher.description':
       'オーディエンスを選択して、コピーとレイアウトが文化に合わせて変化する様子を確認できます。',
@@ -426,6 +454,13 @@ export const TRANSLATIONS: Record<LocaleKey, Translations> = {
     'app.sections.interactions.modal.dateLabel': '出行日期',
     'app.sections.interactions.modal.confirm': '确认',
     'app.sections.interactions.modal.close': '关闭',
+    'app.sections.interactions.modal.nameLabel': '姓名',
+    'app.sections.interactions.modal.phoneLabel': '手机号',
+    'app.sections.interactions.modal.emailLabel': '邮箱（可选）',
+    'app.sections.interactions.modal.namePlaceholder': '你的姓名',
+    'app.sections.interactions.modal.phonePlaceholder': '例如：+86 138 0000 0000',
+    'app.sections.interactions.modal.emailPlaceholder': 'you@example.com',
+    'app.sections.interactions.modal.phoneError': '请输入有效的手机号。',
     'app.sections.audienceSwitcher.title': '全球传播，本地灵魂',
     'app.sections.audienceSwitcher.description': '选择受众，查看活动如何根据不同文化调整文案与版式。',
     'app.sections.audienceSwitcher.livePreview': '本地化预览',
@@ -513,6 +548,13 @@ export const TRANSLATIONS: Record<LocaleKey, Translations> = {
     'app.sections.interactions.modal.dateLabel': '여행 날짜',
     'app.sections.interactions.modal.confirm': '확인',
     'app.sections.interactions.modal.close': '닫기',
+    'app.sections.interactions.modal.nameLabel': '이름',
+    'app.sections.interactions.modal.phoneLabel': '전화번호',
+    'app.sections.interactions.modal.emailLabel': '이메일(선택)',
+    'app.sections.interactions.modal.namePlaceholder': '이름 입력',
+    'app.sections.interactions.modal.phonePlaceholder': '예: +82 10 1234 5678',
+    'app.sections.interactions.modal.emailPlaceholder': 'you@example.com',
+    'app.sections.interactions.modal.phoneError': '유효한 전화번호를 입력해주세요.',
     'app.sections.audienceSwitcher.title': '글로벌 확장, 로컬 감성',
     'app.sections.audienceSwitcher.description':
       '타깃을 선택하면 문화에 맞춰 문구와 레이아웃이 어떻게 바뀌는지 확인할 수 있어요.',

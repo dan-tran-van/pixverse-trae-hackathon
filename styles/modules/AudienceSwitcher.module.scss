@@ -9,9 +9,9 @@
 }
 
 .header {
-  text-align: center;
+  text-align: start;
   max-inline-size: 700px;
-  margin-inline: auto;
+  margin-inline: 0;
   margin-block-end: 3rem;
 
   .title {
@@ -35,14 +35,14 @@
 .card {
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: flex-start;
   padding: 1.5rem;
   background: white;
   border: 2px solid transparent;
   border-radius: var(--radius);
   transition: var(--transition);
   position: relative;
-  text-align: center;
+  text-align: start;
 
   &:hover {
     transform: translateY(-5px);

@@ -19,7 +19,7 @@
   padding-inline: 3rem;
   border-radius: 20px;
   border: 1px solid rgba(255, 255, 255, 0.1);
-  text-align: center;
+  text-align: start;
 }
 
 .title {
@@ -34,7 +34,7 @@
 
 .summary {
   display: flex;
-  justify-content: center;
+  justify-content: flex-start;
   gap: 2rem;
   margin-block-end: 2.5rem;
   padding-block: 1.5rem;
@@ -104,7 +104,7 @@
 
 .url {
   flex: 1;
-  text-align: left;
+  text-align: start;
   padding-inline: 1rem;
   padding-block: 0;
   font-size: 0.9rem;

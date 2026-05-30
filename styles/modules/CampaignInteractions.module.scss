@@ -55,7 +55,7 @@
   padding: 3rem;
   border-radius: 20px;
   box-shadow: 0 20px 50px rgba(0, 0, 0, 0.05);
-  text-align: center;
+  text-align: start;
   border: 1px solid var(--border);
 
   h3 {
@@ -112,7 +112,7 @@
 
 .bookingActions {
   display: flex;
-  justify-content: center;
+  justify-content: flex-start;
   gap: 0.75rem;
   margin-block-start: 1.25rem;
 }
@@ -203,6 +203,36 @@
   }
 }
 
+.fields {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0.75rem;
+  margin-block: 0.5rem 1rem;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+
+  span {
+    font-size: 0.85rem;
+    font-weight: 800;
+    color: var(--text-muted);
+    letter-spacing: 0.5px;
+  }
+}
+
+.textInput {
+  inline-size: 100%;
+  padding-block: 0.75rem;
+  padding-inline: 0.75rem;
+  border-radius: 12px;
+  border: 1px solid var(--border);
+  font-size: 1rem;
+  font-family: inherit;
+}
+
 .dateInput {
   inline-size: 100%;
   padding-block: 0.75rem;
@@ -213,9 +243,16 @@
   font-family: inherit;
 }
 
+.errorText {
+  margin-block: 0 1rem;
+  color: var(--primary);
+  font-weight: 800;
+  font-size: 0.9rem;
+}
+
 .modalActions {
   display: flex;
-  justify-content: flex-end;
+  justify-content: flex-start;
   gap: 0.75rem;
 }
 

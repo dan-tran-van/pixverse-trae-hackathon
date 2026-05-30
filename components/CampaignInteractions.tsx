@@ -25,6 +25,10 @@ const CampaignInteractions: React.FC = () => {
   const [isCalendarOpen, setIsCalendarOpen] = useState(false);
   const [calendarMode, setCalendarMode] = useState<'book' | 'edit'>('book');
   const [pendingDate, setPendingDate] = useState<string>('');
+  const [contactName, setContactName] = useState('');
+  const [contactPhone, setContactPhone] = useState('');
+  const [contactEmail, setContactEmail] = useState('');
+  const [bookingError, setBookingError] = useState<string | null>(null);
 
   useEffect(() => {
     const savedStats = localStorage.getItem('campaign_stats');
@@ -35,6 +39,17 @@ const CampaignInteractions: React.FC = () => {
     setIsBooked(localStorage.getItem('campaign_booked') === 'true');
     const storedDate = localStorage.getItem('campaign_booked_date');
     setBookedDate(storedDate || null);
+
+    const storedContact = localStorage.getItem('campaign_booking_contact');
+    if (storedContact) {
+      try {
+        const parsed = JSON.parse(storedContact) as { name?: string; phone?: string; email?: string };
+        setContactName(parsed.name ?? '');
+        setContactPhone(parsed.phone ?? '');
+        setContactEmail(parsed.email ?? '');
+      } catch {
+      }
+    }
   }, []);
 
   const saveStats = (newStats: CampaignStats) => {
@@ -61,11 +76,22 @@ const CampaignInteractions: React.FC = () => {
   const openCalendar = (mode: 'book' | 'edit') => {
     setCalendarMode(mode);
     setPendingDate(bookedDate || new Date().toISOString().slice(0, 10));
+    setBookingError(null);
     setIsCalendarOpen(true);
+  };
+
+  const isValidPhone = (value: string) => {
+    const compact = value.replace(/[^\d+]/g, '');
+    const digits = compact.replace(/\D/g, '');
+    return digits.length >= 7;
   };
 
   const handleConfirmBooking = () => {
     if (!pendingDate) return;
+    if (!contactPhone.trim() || !isValidPhone(contactPhone)) {
+      setBookingError(t('app.sections.interactions.modal.phoneError'));
+      return;
+    }
 
     if (!isBooked) {
       const newStats = { ...stats, bookings: stats.bookings + 1 };
@@ -76,6 +102,10 @@ const CampaignInteractions: React.FC = () => {
 
     setBookedDate(pendingDate);
     localStorage.setItem('campaign_booked_date', pendingDate);
+    localStorage.setItem(
+      'campaign_booking_contact',
+      JSON.stringify({ name: contactName.trim(), phone: contactPhone.trim(), email: contactEmail.trim() }),
+    );
     setIsCalendarOpen(false);
   };
 
@@ -196,6 +226,42 @@ const CampaignInteractions: React.FC = () => {
               </button>
             </div>
 
+            <div className={styles.fields}>
+              <label className={styles.field}>
+                <span>{t('app.sections.interactions.modal.nameLabel')}</span>
+                <input
+                  className={styles.textInput}
+                  type="text"
+                  value={contactName}
+                  placeholder={t('app.sections.interactions.modal.namePlaceholder')}
+                  onChange={(e) => setContactName(e.target.value)}
+                />
+              </label>
+
+              <label className={styles.field}>
+                <span>{t('app.sections.interactions.modal.phoneLabel')}</span>
+                <input
+                  className={styles.textInput}
+                  type="tel"
+                  value={contactPhone}
+                  placeholder={t('app.sections.interactions.modal.phonePlaceholder')}
+                  onChange={(e) => setContactPhone(e.target.value)}
+                  required
+                />
+              </label>
+
+              <label className={styles.field}>
+                <span>{t('app.sections.interactions.modal.emailLabel')}</span>
+                <input
+                  className={styles.textInput}
+                  type="email"
+                  value={contactEmail}
+                  placeholder={t('app.sections.interactions.modal.emailPlaceholder')}
+                  onChange={(e) => setContactEmail(e.target.value)}
+                />
+              </label>
+            </div>
+
             <label className={styles.dateLabel}>
               <span>{t('app.sections.interactions.modal.dateLabel')}</span>
               <input
@@ -205,6 +271,8 @@ const CampaignInteractions: React.FC = () => {
                 onChange={(e) => setPendingDate(e.target.value)}
               />
             </label>
+
+            {bookingError && <p className={styles.errorText}>{bookingError}</p>}
 
             <div className={styles.modalActions}>
               <button className={styles.modalPrimary} onClick={handleConfirmBooking} disabled={!pendingDate}>
