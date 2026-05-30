@@ -1,7 +1,15 @@
 .main {
-  min-block-size: 100vb;
+  // min-block-size: 100vb;
   display: flex;
   flex-direction: column;
+}
+
+.main--horizontal {
+}
+
+.main--vertical {
+  writing-mode: vertical-rl;
+  // text-orientation: mixed;
 }
 
 .localizationSection {
@@ -219,9 +227,8 @@
 }
 
 /* Vertical Mode Logic: Swap orientation styles */
-:global(.isVerticalLayout) {
+.main--vertical {
   @media (orientation: portrait) {
-    /* Reusing Landscape Styles */
     .studioContent {
       grid-template-columns: 1fr 1fr;
       text-align: left;
@@ -232,7 +239,6 @@
   }
 
   @media (orientation: landscape) {
-    /* Reusing Portrait Styles */
     .studioContent {
       grid-template-columns: 1fr;
       text-align: center;

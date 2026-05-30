@@ -8,6 +8,14 @@
   background: var(--background);
 }
 
+.hero--horizontal {
+  writing-mode: horizontal-tb;
+}
+
+.hero--vertical {
+  writing-mode: vertical-rl;
+}
+
 .content {
   max-inline-size: 1000px;
   padding-block: 2.5rem;
@@ -104,15 +112,27 @@
 
 .videoWrapper {
   inline-size: 100%;
-  block-size: clamp(280px, 62vb, 720px);
   background: #000;
   overflow: hidden;
+  &--horizontal {
+  block-size: clamp(280px, 62vb, 720px);
+  }
+  &--vertical {
+    inline-size: 100vh;
+    block-size: 100vw;
+    @media (orientation: landscape) {
+      
+    }
+    @media (orientation: portrait) {
+      
+    }
+  }
 }
 
 .video {
   inline-size: 100%;
   block-size: 100%;
-  object-fit: cover;
+  object-fit: contain;
 }
 
 @keyframes fadeInUp {
@@ -159,9 +179,8 @@
 }
 
 /* Vertical Mode Logic: Swap orientation styles */
-:global(.isVerticalLayout) {
+.hero--vertical {
   @media (orientation: portrait) {
-    /* Reusing Landscape Styles */
     .content {
       padding-inline: 4rem;
     }
@@ -177,7 +196,6 @@
   }
 
   @media (orientation: landscape) {
-    /* Reusing Portrait Styles */
     .videoWrapper {
       block-size: clamp(240px, 45vb, 520px);
     }

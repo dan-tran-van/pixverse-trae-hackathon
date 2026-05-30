@@ -4,6 +4,12 @@
   border-block-end: 1px solid var(--border);
 }
 
+.container--horizontal {
+}
+
+.container--vertical {
+}
+
 .header {
   text-align: center;
   max-inline-size: 700px;
@@ -176,14 +182,14 @@
 }
 
 /* Vertical Mode Logic: Swap orientation styles */
-:global(.isVerticalLayout) {
+.container--vertical {
   @media (orientation: portrait) {
-    /* Reusing Landscape Styles */
     .content {
       grid-template-columns: 1.5fr 1fr;
     }
     .videoColumn {
       position: sticky;
+      inset-block-start: 2rem;
     }
     .header .title {
       font-size: 2.5rem;
@@ -191,7 +197,6 @@
   }
 
   @media (orientation: landscape) {
-    /* Reusing Portrait Styles */
     .content {
       grid-template-columns: 1fr;
       gap: 2rem;

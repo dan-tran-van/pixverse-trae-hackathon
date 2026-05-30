@@ -6,17 +6,22 @@ import styles from './page.module.scss';
 import HeroSection from '@/components/HeroSection';
 import VideoStorySection from '@/components/VideoStorySection';
 import AudienceSwitcher from '@/components/AudienceSwitcher';
-import VerticalWritingPreview from '@/components/VerticalWritingPreview';
 import DiscoveryCards from '@/components/DiscoveryCards';
 import CampaignInteractions from '@/components/CampaignInteractions';
-import { AUDIENCES, SCENE_CHAPTERS, DISCOVERY_CARDS } from '@/data/campaignData';
-import { AudienceKey, WritingMode } from '@/types/campaign';
+import { AUDIENCES } from '@/data/campaignData';
+import { AudienceKey } from '@/types/campaign';
+import { useWritingMode } from '@/components/WritingModeContext';
+import { useI18n } from '@/components/I18nContext';
+import { getLocalizedDiscoveryCards, getLocalizedSceneChapters } from '@/data/campaignContent';
 
 export default function CampaignPage() {
   const [selectedAudienceKey, setSelectedAudienceKey] = useState<AudienceKey>('global');
-  const [writingMode, setWritingMode] = useState<WritingMode>('horizontal');
+  const { writingMode, setWritingMode } = useWritingMode();
+  const { locale, setAudienceLocale, t } = useI18n();
 
   const currentAudience = AUDIENCES.find(a => a.key === selectedAudienceKey) || AUDIENCES[0];
+  const chapters = getLocalizedSceneChapters(locale);
+  const cards = getLocalizedDiscoveryCards(locale);
 
   const handleAudienceChange = (key: AudienceKey) => {
     setSelectedAudienceKey(key);
@@ -24,6 +29,7 @@ export default function CampaignPage() {
     if (audience) {
       setWritingMode(audience.defaultWritingMode);
     }
+    setAudienceLocale(key);
   };
 
   const scrollToDiscovery = () => {
@@ -32,7 +38,7 @@ export default function CampaignPage() {
   };
 
   return (
-    <main className={`${styles.main} ${writingMode === 'vertical' ? 'isVerticalLayout' : ''}`}>
+    <main className={`${styles.main} ${styles[`main--${writingMode}`]}`}>
       {/* Featured Main Video Hero */}
       <HeroSection 
         variant={currentAudience} 
@@ -42,11 +48,11 @@ export default function CampaignPage() {
 
       {/* Visual Storytelling Section */}
       <div id="discovery">
-        <VideoStorySection chapters={SCENE_CHAPTERS} />
+        <VideoStorySection chapters={chapters} />
       </div>
 
       {/* Discovery Moments Cards */}
-      <DiscoveryCards cards={DISCOVERY_CARDS} />
+      <DiscoveryCards cards={cards} />
 
       {/* Community Interactions - Likes, Comments, Booking */}
       <div id="booking">
@@ -56,9 +62,9 @@ export default function CampaignPage() {
       {/* Global Audience View Switcher */}
       <div className={styles.localizationSection}>
         <div className={styles.sectionHeader}>
-          <span className={styles.accent}>Worldwide Interest</span>
-          <h2>A Global Story</h2>
-          <p>See how travelers from different cultures experience the Vietnam Discovery campaign.</p>
+          <span className={styles.accent}>{t('app.page.section.worldwideInterest')}</span>
+          <h2>{t('app.page.section.globalStoryTitle')}</h2>
+          <p>{t('app.page.section.globalStoryDescription')}</p>
         </div>
         
         <AudienceSwitcher 
@@ -67,29 +73,27 @@ export default function CampaignPage() {
           onSelect={handleAudienceChange} 
         />
         
-        <div className={styles.layoutPreviewWrapper}>
+        {/* <div className={styles.layoutPreviewWrapper}>
           <div className={styles.sectionHeader}>
             <span className={styles.accent}>Cultural Elegance</span>
             <h2>Localized Experience</h2>
             <p>Our campaign adapts to the local soul, including native vertical typography for East Asian audiences.</p>
           </div>
           <VerticalWritingPreview variant={currentAudience} />
-        </div>
+        </div> */}
       </div>
 
       {/* Final Bridge to Studio - The only mention of Studio on this page */}
       <section className={styles.studioBridge}>
         <div className={styles.studioContent}>
           <div className={styles.studioText}>
-            <span className={styles.badge}>For Marketing Teams</span>
-            <h2>Customize Your Campaign</h2>
+            <span className={styles.badge}>{t('app.studioBridge.badge')}</span>
+            <h2>{t('app.studioBridge.title')}</h2>
             <p>
-              Are you a brand manager or marketing lead? Use our Studio tool to customize 
-              this campaign for your specific region, adjust typography, and generate 
-              localized preview links in seconds.
+              {t('app.studioBridge.description')}
             </p>
             <Link href="/studio" className={styles.studioBtn}>
-              Enter Studio Mode →
+              {t('app.studioBridge.enter')}
             </Link>
           </div>
           <div className={styles.studioVisual}>
@@ -106,11 +110,11 @@ export default function CampaignPage() {
 
       <footer className={styles.footer}>
         <div className={styles.footerContent}>
-          <p>© 2026 Vietnam Discovery Campaign. Powered by PixVerse AI Video Production.</p>
+          <p>{t('app.footer.copyright')}</p>
           <div className={styles.footerLinks}>
-            <span>Destinations</span>
-            <span>Gastronomy</span>
-            <span>Cultural Heritage</span>
+            <span>{t('app.footer.link.destinations')}</span>
+            <span>{t('app.footer.link.gastronomy')}</span>
+            <span>{t('app.footer.link.culturalHeritage')}</span>
           </div>
         </div>
       </footer>

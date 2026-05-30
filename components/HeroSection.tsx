@@ -1,6 +1,8 @@
 import React from 'react';
 import styles from '@/styles/modules/HeroSection.module.scss';
 import { AudienceVariant } from '@/types/campaign';
+import { useWritingMode } from '@/components/WritingModeContext';
+import { useI18n } from '@/components/I18nContext';
 
 interface HeroSectionProps {
   variant: AudienceVariant;
@@ -9,32 +11,35 @@ interface HeroSectionProps {
 }
 
 const HeroSection: React.FC<HeroSectionProps> = ({ variant, onCtaClick, onExploreClick }) => {
+  const { writingMode } = useWritingMode();
+  const { t } = useI18n();
+
   return (
-    <section className={styles.hero}>
-      <div className={styles.videoWrapper}>
+    <section className={`${styles.hero} ${styles[`hero--${writingMode}`]}`}>
+      <div className={`${styles.videoWrapper} ${styles[`videoWrapper--${writingMode}`]}`}>
         <video 
-          className={styles.video}
+          className={`${styles.video} ${styles[`video--${writingMode}`]}`}
           src="/videos/vietnam-discovery.mp4" 
           autoPlay 
           muted 
           loop 
           playsInline
         >
-          Your browser does not support the video tag.
+          {t('app.video.unsupported')}
         </video>
       </div>
-      <div className={styles.content}>
-        <div className={styles.headerInfo}>
-          <span className={styles.badge}>Featured PixVerse Production</span>
-          <h1 className={styles.headline}>{variant.headline}</h1>
-          <p className={styles.subheadline}>{variant.subheadline}</p>
+      <div className={`${styles.content} ${styles[`content--${writingMode}`]}`}>
+        <div className={`${styles.headerInfo} ${styles[`headerInfo--${writingMode}`]}`}>
+          <span className={`${styles.badge} ${styles[`badge--${writingMode}`]}`}>{t('app.hero.featuredBadge')}</span>
+          <h1 className={`${styles.headline} ${styles[`headline--${writingMode}`]}`}>{variant.headline}</h1>
+          <p className={`${styles.subheadline} ${styles[`subheadline--${writingMode}`]}`}>{variant.subheadline}</p>
         </div>
-        <div className={styles.actions}>
-          <button className={styles.primaryCta} onClick={onCtaClick}>
+        <div className={`${styles.actions} ${styles[`actions--${writingMode}`]}`}>
+          <button className={`${styles.primaryCta} ${styles[`primaryCta--${writingMode}`]}`} onClick={onCtaClick}>
             {variant.ctaLabel}
           </button>
-          <button className={styles.secondaryCta} onClick={onExploreClick}>
-            Explore Scenes
+          <button className={`${styles.secondaryCta} ${styles[`secondaryCta--${writingMode}`]}`} onClick={onExploreClick}>
+            {t('app.hero.exploreScenes')}
           </button>
         </div>
       </div>

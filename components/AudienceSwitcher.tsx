@@ -1,6 +1,8 @@
 import React from 'react';
 import styles from '@/styles/modules/AudienceSwitcher.module.scss';
 import { AudienceVariant, AudienceKey } from '@/types/campaign';
+import { useWritingMode } from '@/components/WritingModeContext';
+import { useI18n } from '@/components/I18nContext';
 
 interface AudienceSwitcherProps {
   audiences: AudienceVariant[];
@@ -9,12 +11,15 @@ interface AudienceSwitcherProps {
 }
 
 const AudienceSwitcher: React.FC<AudienceSwitcherProps> = ({ audiences, selectedKey, onSelect }) => {
+  const { writingMode } = useWritingMode();
+  const { t } = useI18n();
+
   return (
-    <section className={styles.container}>
+    <section className={`${styles.container} ${styles[`container--${writingMode}`]}`}>
       <div className={styles.header}>
-        <h2 className={styles.title}>Global Reach, Local Soul</h2>
+        <h2 className={styles.title}>{t('app.sections.audienceSwitcher.title')}</h2>
         <p className={styles.description}>
-          Select an audience to see how the campaign adapts its message and visual style for different cultures.
+          {t('app.sections.audienceSwitcher.description')}
         </p>
       </div>
 
@@ -39,7 +44,7 @@ const AudienceSwitcher: React.FC<AudienceSwitcherProps> = ({ audiences, selected
         ))}
       </div>
 
-      <div className={styles.livePreview}>
+      {/* <div className={styles.livePreview}>
         <div className={styles.previewHeader}>
           <span>Live Localization Preview</span>
           <span className={styles.pulse}></span>
@@ -57,8 +62,8 @@ const AudienceSwitcher: React.FC<AudienceSwitcherProps> = ({ audiences, selected
             <label>CTA Label</label>
             <span className={styles.ctaPreview}>{audiences.find(a => a.key === selectedKey)?.ctaLabel}</span>
           </div>
-        </div>
-      </div>
+        </div> */}
+      {/* </div> */}
     </section>
   );
 };

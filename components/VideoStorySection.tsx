@@ -1,6 +1,8 @@
 import React, { useRef, useState } from 'react';
 import styles from '@/styles/modules/VideoStorySection.module.scss';
 import { SceneChapter } from '@/types/campaign';
+import { useWritingMode } from '@/components/WritingModeContext';
+import { useI18n } from '@/components/I18nContext';
 
 interface VideoStorySectionProps {
   chapters: SceneChapter[];
@@ -8,6 +10,8 @@ interface VideoStorySectionProps {
 }
 
 const VideoStorySection: React.FC<VideoStorySectionProps> = ({ chapters, onChapterSelect }) => {
+  const { writingMode } = useWritingMode();
+  const { t } = useI18n();
   const [activeChapterId, setActiveChapterId] = useState(chapters[0].id);
   const videoRef = useRef<HTMLVideoElement>(null);
 
@@ -25,11 +29,11 @@ const VideoStorySection: React.FC<VideoStorySectionProps> = ({ chapters, onChapt
   const activeChapter = chapters.find(c => c.id === activeChapterId) || chapters[0];
 
   return (
-    <section className={styles.container}>
+    <section className={`${styles.container} ${styles[`container--${writingMode}`]}`}>
       <div className={styles.header}>
-        <h2 className={styles.title}>Visual Storytelling</h2>
+        <h2 className={styles.title}>{t('app.sections.visualStorytelling.title')}</h2>
         <p className={styles.description}>
-          Explore Vietnam through these curated scenes, each capturing a unique facet of our spirit.
+          {t('app.sections.visualStorytelling.description')}
         </p>
       </div>
 
@@ -43,10 +47,10 @@ const VideoStorySection: React.FC<VideoStorySectionProps> = ({ chapters, onChapt
               controls
               playsInline
             >
-              Your browser does not support the video tag.
+              {t('app.video.unsupported')}
             </video>
             <div className={styles.chapterOverlay}>
-              <span>Currently Viewing: {activeChapter.title}</span>
+              <span>{t('app.sections.currentlyViewing', { title: activeChapter.title })}</span>
             </div>
           </div>
           <div className={styles.activeChapterInfo}>
@@ -56,7 +60,7 @@ const VideoStorySection: React.FC<VideoStorySectionProps> = ({ chapters, onChapt
         </div>
 
         <div className={styles.chaptersColumn}>
-          <h3 className={styles.chaptersTitle}>Scene Chapters</h3>
+          <h3 className={styles.chaptersTitle}>{t('app.sections.sceneChapters')}</h3>
           <div className={styles.chapterList}>
             {chapters.map((chapter) => (
               <button

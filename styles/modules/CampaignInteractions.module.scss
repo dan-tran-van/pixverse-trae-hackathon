@@ -5,6 +5,12 @@
   padding-inline: 1.5rem;
 }
 
+.container--horizontal {
+}
+
+.container--vertical {
+}
+
 .statsBar {
   display: flex;
   gap: 2rem;
@@ -95,6 +101,137 @@
   font-size: 0.85rem;
   color: #27ae60;
   font-weight: 600;
+}
+
+.bookedDate {
+  margin-block-start: 0.5rem;
+  font-size: 0.85rem;
+  color: var(--foreground);
+  font-weight: 700;
+}
+
+.bookingActions {
+  display: flex;
+  justify-content: center;
+  gap: 0.75rem;
+  margin-block-start: 1.25rem;
+}
+
+.editBtn,
+.cancelBtn {
+  padding-block: 0.6rem;
+  padding-inline: 1rem;
+  border-radius: 999px;
+  font-weight: 800;
+  font-size: 0.85rem;
+  border: 1px solid var(--border);
+  background: #fff;
+}
+
+.editBtn:hover {
+  border-color: var(--primary);
+  color: var(--primary);
+}
+
+.cancelBtn {
+  border-color: rgba(192, 57, 43, 0.35);
+  color: var(--primary);
+}
+
+.cancelBtn:hover {
+  background: rgba(192, 57, 43, 0.06);
+}
+
+.modalOverlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.55);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-inline: 1rem;
+  padding-block: 1rem;
+  z-index: 1000;
+}
+
+.modal {
+  inline-size: min(520px, 100%);
+  background: white;
+  border-radius: 16px;
+  border: 1px solid var(--border);
+  padding-block: 1.5rem;
+  padding-inline: 1.5rem;
+  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.25);
+}
+
+.modalHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-block-end: 1rem;
+
+  h4 {
+    margin: 0;
+    font-size: 1.1rem;
+    font-weight: 900;
+    color: var(--foreground);
+  }
+}
+
+.modalClose {
+  padding-block: 0.4rem;
+  padding-inline: 0.75rem;
+  border-radius: 999px;
+  border: 1px solid var(--border);
+  background: #fff;
+  font-weight: 800;
+  font-size: 0.85rem;
+}
+
+.dateLabel {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  margin-block: 1rem 1.5rem;
+
+  span {
+    font-size: 0.85rem;
+    font-weight: 800;
+    color: var(--text-muted);
+    letter-spacing: 0.5px;
+  }
+}
+
+.dateInput {
+  inline-size: 100%;
+  padding-block: 0.75rem;
+  padding-inline: 0.75rem;
+  border-radius: 12px;
+  border: 1px solid var(--border);
+  font-size: 1rem;
+  font-family: inherit;
+}
+
+.modalActions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 0.75rem;
+}
+
+.modalPrimary {
+  padding-block: 0.75rem;
+  padding-inline: 1.25rem;
+  border-radius: 999px;
+  background: var(--primary);
+  color: white;
+  font-weight: 900;
+  font-size: 0.9rem;
+}
+
+.modalPrimary:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
 }
 
 .commentSection {
@@ -189,6 +326,11 @@
     align-items: flex-start;
     gap: 1rem;
   }
+
+  .bookingActions {
+    flex-direction: column;
+    inline-size: 100%;
+  }
 }
 
 @media (orientation: landscape) {
@@ -198,9 +340,8 @@
 }
 
 /* Vertical Mode Logic: Swap orientation styles */
-:global(.isVerticalLayout) {
+.container--vertical {
   @media (orientation: portrait) {
-    /* Reusing Landscape Styles */
     .mainGrid {
       grid-template-columns: 1fr 1.5fr;
     }
@@ -211,7 +352,6 @@
   }
 
   @media (orientation: landscape) {
-    /* Reusing Portrait Styles */
     .mainGrid {
       grid-template-columns: 1fr;
       gap: 2rem;

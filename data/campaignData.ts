@@ -107,24 +107,24 @@ export const DISCOVERY_CARDS: DiscoveryCard[] = [
     id: 'card-1',
     title: 'Sapa Terraces',
     description: 'Emerald green rice fields sculpted into the mountainside.',
-    category: 'Places',
+    category: 'places',
   },
   {
     id: 'card-2',
     title: 'Bánh Mì Culture',
     description: 'The world\'s favorite sandwich, perfected on the streets of Saigon.',
-    category: 'Food',
+    category: 'food',
   },
   {
     id: 'card-3',
     title: 'Ao Dai Elegance',
     description: 'The traditional silk tunic that embodies Vietnamese grace.',
-    category: 'Culture',
+    category: 'culture',
   },
   {
     id: 'card-4',
     title: 'Da Nang Nightlife',
     description: 'Modern bridges and vibrant lights along the Han River.',
-    category: 'City Life',
+    category: 'cityLife',
   },
 ];

@@ -24,7 +24,7 @@ export interface DiscoveryCard {
   id: string;
   title: string;
   description: string;
-  category: 'Places' | 'Food' | 'Culture' | 'City Life';
+  category: 'places' | 'food' | 'culture' | 'cityLife';
 }
 
 export interface CampaignComment {

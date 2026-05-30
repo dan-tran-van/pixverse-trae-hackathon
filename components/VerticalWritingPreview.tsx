@@ -1,43 +1,42 @@
-import React, { useState } from 'react';
+import React from 'react';
 import styles from '@/styles/modules/VerticalWritingPreview.module.scss';
-import { AudienceVariant, WritingMode } from '@/types/campaign';
+import { AudienceVariant } from '@/types/campaign';
+import { useWritingMode } from '@/components/WritingModeContext';
+import { useI18n } from '@/components/I18nContext';
 
 interface VerticalWritingPreviewProps {
   variant: AudienceVariant;
 }
 
 const VerticalWritingPreview: React.FC<VerticalWritingPreviewProps> = ({ variant }) => {
-  const [mode, setMode] = useState<WritingMode>(variant.defaultWritingMode);
-
-  const toggleMode = () => {
-    setMode(prev => prev === 'horizontal' ? 'vertical' : 'horizontal');
-  };
+  const { writingMode, setWritingMode } = useWritingMode();
+  const { t } = useI18n();
 
   return (
-    <section className={styles.container}>
+    <section className={`${styles.container} ${styles[`container--${writingMode}`]}`}>
       <div className={styles.header}>
-        <h2 className={styles.title}>Typography & Layout</h2>
+        <h2 className={styles.title}>{t('app.preview.typographyTitle')}</h2>
         <p className={styles.description}>
-          Experience the elegance of East Asian vertical writing modes, a key cultural differentiator for Japan, Taiwan, and China.
+          {t('app.preview.typographyDescription')}
         </p>
       </div>
 
       <div className={styles.controls}>
         <button 
-          className={`${styles.toggle} ${mode === 'horizontal' ? styles.active : ''}`}
-          onClick={() => setMode('horizontal')}
+          className={`${styles.toggle} ${writingMode === 'horizontal' ? styles.active : ''}`}
+          onClick={() => setWritingMode('horizontal')}
         >
-          Horizontal
+          {t('app.preview.toggle.horizontal')}
         </button>
         <button 
-          className={`${styles.toggle} ${mode === 'vertical' ? styles.active : ''}`}
-          onClick={() => setMode('vertical')}
+          className={`${styles.toggle} ${writingMode === 'vertical' ? styles.active : ''}`}
+          onClick={() => setWritingMode('vertical')}
         >
-          Vertical
+          {t('app.preview.toggle.vertical')}
         </button>
       </div>
 
-      <div className={`${styles.previewArea} ${mode === 'vertical' ? styles.isVertical : ''}`}>
+      <div className={`${styles.previewArea} ${writingMode === 'vertical' ? styles.isVertical : ''}`}>
         <div className={styles.paper}>
           <div className={styles.content}>
             <h3 className={styles.headline}>{variant.headline}</h3>
@@ -53,9 +52,9 @@ const VerticalWritingPreview: React.FC<VerticalWritingPreviewProps> = ({ variant
         </div>
       </div>
       
-      {!variant.supportsVertical && mode === 'vertical' && (
+      {!variant.supportsVertical && writingMode === 'vertical' && (
         <p className={styles.warning}>
-          * Note: This audience typically uses horizontal layout, but we are previewing the vertical mode for demonstration.
+          {t('app.preview.warning')}
         </p>
       )}
     </section>

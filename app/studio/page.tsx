@@ -1,16 +1,19 @@
 'use client';
 
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import Link from 'next/link';
 import styles from './page.module.scss';
 import { AUDIENCES } from '@/data/campaignData';
-import { AudienceKey, WritingMode } from '@/types/campaign';
+import { AudienceKey } from '@/types/campaign';
 import HeroSection from '@/components/HeroSection';
 import VerticalWritingPreview from '@/components/VerticalWritingPreview';
+import { useWritingMode } from '@/components/WritingModeContext';
+import { useI18n } from '@/components/I18nContext';
 
 export default function StudioPage() {
   const [selectedAudienceKey, setSelectedAudienceKey] = useState<AudienceKey>('global');
-  const [writingMode, setWritingMode] = useState<WritingMode>('horizontal');
+  const { writingMode, setWritingMode } = useWritingMode();
+  const { setAudienceLocale, t } = useI18n();
   const [isSaving, setIsSaving] = useState(false);
   const [shareLink, setShareLink] = useState('');
 
@@ -22,6 +25,7 @@ export default function StudioPage() {
     if (audience) {
       setWritingMode(audience.defaultWritingMode);
     }
+    setAudienceLocale(key);
   };
 
   const handleSave = () => {
@@ -35,17 +39,17 @@ export default function StudioPage() {
   };
 
   return (
-    <div className={styles.studioContainer}>
+    <div className={`${styles.studioContainer} ${styles[`studioContainer--${writingMode}`]}`}>
       <aside className={styles.sidebar}>
         <div className={styles.sidebarHeader}>
-          <Link href="/" className={styles.backBtn}>← Back to Campaign</Link>
-          <h2>Campaign Studio</h2>
-          <p>Experiment and customize your campaign preview using the PixVerse demo video.</p>
+          <Link href="/" className={styles.backBtn}>{t('app.studio.back')}</Link>
+          <h2>{t('app.studio.title')}</h2>
+          <p>{t('app.studio.description')}</p>
         </div>
 
         <div className={styles.controls}>
           <div className={styles.controlGroup}>
-            <label>Target Audience</label>
+            <label>{t('app.studio.controls.targetAudience')}</label>
             <div className={styles.audienceGrid}>
               {AUDIENCES.map((a) => (
                 <button
@@ -60,25 +64,25 @@ export default function StudioPage() {
           </div>
 
           <div className={styles.controlGroup}>
-            <label>Writing Mode</label>
+            <label>{t('app.studio.controls.writingMode')}</label>
             <div className={styles.toggleGroup}>
               <button
                 className={writingMode === 'horizontal' ? styles.active : ''}
                 onClick={() => setWritingMode('horizontal')}
               >
-                Horizontal
+                {t('app.preview.toggle.horizontal')}
               </button>
               <button
                 className={writingMode === 'vertical' ? styles.active : ''}
                 onClick={() => setWritingMode('vertical')}
               >
-                Vertical
+                {t('app.preview.toggle.vertical')}
               </button>
             </div>
           </div>
 
           <div className={styles.controlGroup}>
-            <label>Video Placeholder</label>
+            <label>{t('app.studio.controls.videoPlaceholder')}</label>
             <div className={styles.videoInfo}>
               <div className={styles.dot}></div>
               <span>Vietnam Discovery (PixVerse)</span>
@@ -92,24 +96,24 @@ export default function StudioPage() {
             onClick={handleSave}
             disabled={isSaving}
           >
-            {isSaving ? 'Generating...' : 'Generate Campaign Link'}
+            {isSaving ? t('app.studio.generating') : t('app.studio.generate')}
           </button>
           
           {shareLink && (
             <div className={styles.shareBox}>
-              <p>Your campaign is ready!</p>
+              <p>{t('app.studio.shareReady')}</p>
               <input readOnly value={shareLink} />
               <Link href={shareLink} className={styles.previewLink} target="_blank">
-                Open Preview ↗
+                {t('app.studio.openPreview')}
               </Link>
             </div>
           )}
         </div>
       </aside>
 
-      <main className={`${styles.preview} ${writingMode === 'vertical' ? 'isVerticalLayout' : ''}`}>
+      <main className={`${styles.preview} ${styles[`preview--${writingMode}`]}`}>
         <div className={styles.previewHeader}>
-          <span>Live Preview</span>
+          <span>{t('app.studio.previewHeader')}</span>
           <div className={styles.deviceIcons}>
             <span>📱</span>
             <span>💻</span>

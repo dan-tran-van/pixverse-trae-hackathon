@@ -4,6 +4,14 @@
   flex-direction: column;
 }
 
+.main--horizontal {
+}
+
+.main--vertical {
+  writing-mode: vertical-rl;
+  text-orientation: mixed;
+}
+
 .topBar {
   background: var(--primary);
   color: white;

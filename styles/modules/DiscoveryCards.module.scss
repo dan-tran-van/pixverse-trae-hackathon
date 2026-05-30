@@ -2,6 +2,12 @@
   background: white;
 }
 
+.container--horizontal {
+}
+
+.container--vertical {
+}
+
 .header {
   text-align: center;
   max-inline-size: 700px;
@@ -113,9 +119,8 @@
 }
 
 /* Vertical Mode Logic: Swap orientation styles */
-:global(.isVerticalLayout) {
+.container--vertical {
   @media (orientation: portrait) {
-    /* Reusing Landscape Styles */
     .grid {
       grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
     }
@@ -125,7 +130,6 @@
   }
 
   @media (orientation: landscape) {
-    /* Reusing Portrait Styles */
     .grid {
       grid-template-columns: 1fr;
       gap: 1.5rem;
