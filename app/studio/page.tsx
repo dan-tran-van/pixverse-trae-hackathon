@@ -6,18 +6,24 @@ import styles from './page.module.scss';
 import { AUDIENCES } from '@/data/campaignData';
 import { AudienceKey } from '@/types/campaign';
 import HeroSection from '@/components/HeroSection';
-import VerticalWritingPreview from '@/components/VerticalWritingPreview';
+import VideoStorySection from '@/components/VideoStorySection';
+import DiscoveryCards from '@/components/DiscoveryCards';
+import CampaignInteractions from '@/components/CampaignInteractions';
+import AudienceSwitcher from '@/components/AudienceSwitcher';
 import { useWritingMode } from '@/components/WritingModeContext';
 import { useI18n } from '@/components/I18nContext';
+import { getLocalizedDiscoveryCards, getLocalizedSceneChapters } from '@/data/campaignContent';
 
 export default function StudioPage() {
   const [selectedAudienceKey, setSelectedAudienceKey] = useState<AudienceKey>('global');
   const { writingMode, setWritingMode } = useWritingMode();
-  const { setAudienceLocale, t } = useI18n();
+  const { locale, setAudienceLocale, t } = useI18n();
   const [isSaving, setIsSaving] = useState(false);
   const [shareLink, setShareLink] = useState('');
 
   const currentAudience = AUDIENCES.find(a => a.key === selectedAudienceKey) || AUDIENCES[0];
+  const chapters = getLocalizedSceneChapters(locale);
+  const cards = getLocalizedDiscoveryCards(locale);
 
   const handleAudienceChange = (key: AudienceKey) => {
     setSelectedAudienceKey(key);
@@ -120,13 +126,46 @@ export default function StudioPage() {
           </div>
         </div>
         <div className={styles.previewContent}>
-          <HeroSection 
+          <HeroSection
             variant={currentAudience}
             onCtaClick={() => {}}
             onExploreClick={() => {}}
           />
-          <div className={styles.previewDivider}></div>
-          <VerticalWritingPreview variant={currentAudience} />
+
+          <div id="discovery">
+            <VideoStorySection chapters={chapters} />
+          </div>
+
+          <DiscoveryCards cards={cards} />
+
+          <div id="booking">
+            <CampaignInteractions />
+          </div>
+
+          <div className={styles.localizationSection}>
+            <div className={styles.sectionHeader}>
+              <span className={styles.accent}>{t('app.page.section.worldwideInterest')}</span>
+              <h2>{t('app.page.section.globalStoryTitle')}</h2>
+              <p>{t('app.page.section.globalStoryDescription')}</p>
+            </div>
+
+            <AudienceSwitcher
+              audiences={AUDIENCES}
+              selectedKey={selectedAudienceKey}
+              onSelect={handleAudienceChange}
+            />
+          </div>
+
+          <footer className={styles.footer}>
+            <div className={styles.footerContent}>
+              <p>{t('app.footer.copyright')}</p>
+              <div className={styles.footerLinks}>
+                <span>{t('app.footer.link.destinations')}</span>
+                <span>{t('app.footer.link.gastronomy')}</span>
+                <span>{t('app.footer.link.culturalHeritage')}</span>
+              </div>
+            </div>
+          </footer>
         </div>
       </main>
     </div>
